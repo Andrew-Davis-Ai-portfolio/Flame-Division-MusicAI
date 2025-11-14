@@ -9,7 +9,7 @@
 ## 🚀 Unlock Flame Law  
 ### *The Access Gate to the Core Doctrine*
 
-[**▶️ Unlock Flame Law**](#flame-law-doctrine)
+[**▶️ Unlock Flame Law**](flame-unlock/index.md)
 
 <p align="center">
   <img src="FIRE_SIGIL.png" width="600">

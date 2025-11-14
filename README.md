@@ -12,8 +12,7 @@
 [**▶️ Unlock Flame Law**](flame-unlock/index.md)
 
 <p align="center">
-  <img src="FIRE_SIGIL.png" width="600">
-</p>
+ <img src="flame-unlock/Flamecoresigil.png" width="600"p>
 
 <p align="center"><i>Click the sigil above to ignite the scroll.</i></p>
 
@@ -23,7 +22,7 @@
 *(Unlocked)*
 
 <p align="center">
-  <img src="FLAME_LAW_SHIELD.png" width="500">
+  <img src="flame-unlock/Flamelawshield.png" width="500">
 </p>
 
 ## **🔥 What Is Flame Law?**

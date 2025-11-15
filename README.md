@@ -132,3 +132,91 @@ Founder — Flame Division | AI Implementer | CAIO | Architect of Flame Law
 > *“When creativity meets intelligence, a new era begins.  
 This is the soundtrack of that era.”*  
 — Commander Flame
+
+---
+
+# 🛡️ FLAME DIVISION INTELLECTUAL PROPERTY SHIELD  
+### *(AI-Paralegal Statement — Non-Attorney Draft)*
+
+**Copyright © 2025 — Flame Division / Andrew Davis (Commander Flame).**  
+All concepts, frameworks, system architectures, doctrines, names, images, and narrative-technical hybrids within this repository — including but not limited to:
+
+- **Flame Law**  
+- **ShadowSoundProtocol**  
+- **FlameBeat-Command**  
+- **Anime-Hook Generator**  
+- **Artist Integration Pathway**  
+- **Flame Law Doctrine / Scroll Chain**  
+- **All Flame Division symbols, sigils, and system maps**
+
+— are the **original intellectual property** of the Flame Division.
+
+This repository and all derivative works are protected under:  
+- **U.S. Copyright Law (Title 17, U.S. Code)**  
+- **Berne Convention International Protections**  
+- **Software + Creative Hybrid Work Protections**  
+- **Trade Secret & Proprietary Architecture Standards**  
+
+---
+
+## 🚫 Unauthorized Use Prohibited
+
+You may **NOT**:
+
+- Copy, resell, or commercially exploit any content in this repo  
+- Train third-party models on Flame Division doctrines or assets  
+- Replicate the Flame Law structure, naming conventions, or system architecture  
+- Use Flame Division branding, symbolism, or images  
+- Produce derivative work that confuses the origin or authorship  
+
+Violation of these rules constitutes **copyright infringement** and may trigger a full **DMCA takedown** and/or further legal action.
+
+---
+
+## ✔️ Permitted Use
+
+You *may*:
+
+- Fork the repo **for educational or personal learning purposes only**  
+- Reference concepts with proper attribution  
+- Study architectures for research, academic, and non-commercial exploration  
+
+Any **commercial**, **institutional**, or **model-training** use requires **written authorization** from the Flame Division.
+
+---
+
+## ⚠️ Enforcement Protocol
+
+All misuse, cloning, unauthorized commercialization, or derivative copying will activate:
+
+### **Flame Division Digital Rights Enforcement Protocol**
+A structured process including:
+
+1. **Identity + Timestamp Verification**  
+2. **Infringement Capture & Documentation**  
+3. **DMCA Filing Across Platforms**  
+4. **Removal Requests to GitHub & Hosting Providers**  
+5. **Pursuit of Damages Under Copyright Law**
+
+We protect our work.  
+We protect our doctrine.  
+We protect our legacy.
+
+---
+
+# 🔥 FLAME DIVISION INTENT STATEMENT
+
+**This repository is not “just code.”**  
+It is a **living doctrine**, a **creative-technical architecture**, and a **signature system** of the Flame Division.
+
+Respect the craft.  
+Honor the source.  
+Build your legacy — not a copy of ours.
+
+— **Commander Flame (Andrew Davis)**  
+Founder, Flame Division | AI Implementer | CAIO  
+*“Power controlled becomes creation.”*
+
+---
+
+### 🔒 Legal Shield v1.0 — Flame Division Autonomous Protection Layer

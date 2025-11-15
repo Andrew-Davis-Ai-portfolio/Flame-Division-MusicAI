@@ -5,6 +5,12 @@
 > — Commander Flame
 
 ---
+## 🔥 Roadmap
+- Artist Landing Page Generator (In Progress)
+- Auto-Pitch Pack Creator (Coming Soon)
+- MusicAI Battle Engine (Planned)
+- AI-Ready Demo Kit System (Planned)
+---
 
 ## 🚀 Unlock Flame Law  
 ### *The Access Gate to the Core Doctrine*

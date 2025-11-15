@@ -15,6 +15,19 @@
 ## 🚀 Unlock Flame Law  
 ### *The Access Gate to the Core Doctrine*
 
+![License: MIT](https://img.shields.io/badge/License-MIT-green)
+![Ethics: Verified](https://img.shields.io/badge/Ethics-ResponsibleAI-blue)
+![Trademark: Protected](https://img.shields.io/badge/Trademark-Flame%20Division%E2%84%A2-red)
+![Legal: DMCA](https://img.shields.io/badge/DMCA-Protected-black)
+![AI: Proprietary](https://img.shields.io/badge/AI-Closed%20Core-orange)
+
+[📜 Legal Bundle](./LEGAL_BUNDLE.md)
+[™ Trademark Notice](./Licenses/Trademark/TRADEMARK_NOTICE.md)
+[🔒 Proprietary Systems](./Licenses/Proprietary/PROPRIETARY_SYSTEMS_NOTICE.md)
+[🛡️ AI Ethics Declaration](./Licenses/Ethics/AI_ETHICS_DECLARATION.md)
+[🎨 Brand Usage Guide](./Licenses/Branding/BRAND_USAGE_GUIDE.md)
+[⚖️ DMCA Notice](./Licenses/DMCA/DMCA_NOTICE.md)
+
 [**▶️ Unlock Flame Law**](flame-unlock/index.md)
 
 <p align="center">

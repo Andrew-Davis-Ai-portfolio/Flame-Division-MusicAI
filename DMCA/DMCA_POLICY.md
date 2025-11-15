@@ -1,52 +1,70 @@
-# Flame Division — DMCA Protection Notice
-
-This repository contains original intellectual property belonging to  
-**Commander Flame (Andrew Davis)** and the **Flame Division**.
-
-The following categories are protected under U.S. Copyright Law (17 U.S.C. § 101 et seq.)  
-and are not licensed for copying, redistribution, commercial use, or derivative creation:
-
-### Protected Elements
-- Flame Law Doctrine
-- ShadowSoundProtocol and associated terminology
-- All custom images, emblems, sigils, shields, and branded visual assets
-- System architecture diagrams
-- Artist-integration frameworks
-- Music-industry automation models
-- Proprietary text, slogans, quotes, and scroll content
-- Roadmaps, execution frameworks, & implementation formulas
-
-### DMCA Enforcement
-Any unauthorized use of the above protected elements will result in:
-
-1. A formal DMCA takedown request  
-2. Notice to the hosting provider (GitHub, YouTube, Facebook, etc.)  
-3. Permanent removal of infringing content  
-4. Possible escalation to legal counsel for repeat or commercial infringement  
-
-Flame Division monitors all public repos, posts, and platforms where brand elements  
-may appear without authorization.
-
-### Authorized Use
-You may:
-- Fork the code portions of this repo
-- Study the architectural principles
-- Build *non-commercial* personal experimentation projects
-- Reference the framework with attribution
-
-You may **NOT**:
-- Copy Flame Law language verbatim
-- Replicate the visual identity
-- Package Flame Division tools as your own
-- Use the doctrine or system designs for commercial purposes
-
-### Contact
-For permissions or license questions, contact:
-
-**Andrew Davis (Commander Flame)**  
-Flame Division — AI Governance & Creative Systems  
-📧 *official email here when ready*  
+>>> BEGIN DMCA_POLICY.md
+# DMCA Policy  
+Flame Division – MusicAI / ShadowSoundProtocol
 
 ---
 
-© 2025 Flame Division — All Rights Reserved.
+## 1. Copyright Notice
+
+All content in this repository is copyrighted by **Andrew Davis (Commander Flame)**.
+
+Unauthorized copying, cloning, training, redistribution, or modification is strictly prohibited.
+
+---
+
+## 2. DMCA Takedown Requests
+
+If your copyrighted work has been used improperly, send:
+
+- Your full name  
+- Description of the work  
+- Link to infringing content  
+- Evidence of ownership  
+- Statement of good faith  
+- Digital signature  
+
+to:
+
+**flamedivision.ai@proton.me**
+
+---
+
+## 3. Unauthorized Use Enforcement
+
+The following actions may trigger a DMCA takedown:
+
+- Reposting Flame Division tools  
+- Using images, sigils, or branding without permission  
+- Training commercial models on proprietary content  
+- Selling or redistributing the system  
+- Attempting to imitate Flame Law Doctrine  
+
+---
+
+## 4. Counter-Notices
+
+If you believe content was removed in error:
+
+- Provide detailed reasoning  
+- Proof of ownership  
+- A sworn statement  
+
+We will review all claims carefully.
+
+---
+
+## 5. Repeat Offenders
+
+Users who repeatedly violate copyright rules will be:
+
+- Banned from contributions  
+- Reported to GitHub Legal  
+- Subject to further legal escalation  
+
+---
+
+## 6. Contact
+
+**flamedivision.ai@proton.me**
+
+>>> END DMCA_POLICY.md

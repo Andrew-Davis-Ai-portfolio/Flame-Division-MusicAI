@@ -1,4 +1,48 @@
-# Flame Division MusicAI — Artist Landing Page Generator v1.0
+# 🌐 Flame Division MusicAI — Landing Page System
+The landing page system generates tier-based promotional or onboarding pages for artists using Flame Division tools.
+
+Below are the three available tier structures:
+
+- **Basic Tier**  
+- **Premium Tier**  
+- **Pro Tier**
+
+Each tier has:
+- Purpose  
+- Included tools  
+- Branding tone  
+- Artist expectations  
+- Upgrade pathways  
+- Flame Law statements  
+
+---
+
+## 🔽 Choose Your Tier
+
+### 🔹 Basic  
+Best for new artists, hobbyists, and casual users who want a simple digital presence.
+
+➡️ `/Features/Laning pages/Basic/`
+
+---
+
+### 🔸 Premium  
+For rising artists preparing for releases, collaborations, and professional branding.
+
+➡️ `/Features/Laning pages/Premium/`
+
+---
+
+### 🔥 Pro  
+For serious artists, engineers, and creators building careers with AI-powered systems, brand identity, and industry-grade assets.
+
+➡️ `/Features/Laning pages/Pro/`
+
+---
+
+## 🛡 Flame Law Note
+> “Representation defines perception.  
+> Your landing page is your first handshake — make it aligned.”# Flame Division MusicAI — Artist Landing Page Generator v1.0
 ### Premium Feature — Auto Website Builder for Independent Artists
 
 ## Overview

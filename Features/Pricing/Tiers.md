@@ -1,92 +1,50 @@
-🎵 Flame Division Music AI — Pricing & Deliverable Structure (v1.0)
+🎵 Flame Division Music AI — Pricing Tiers v1.0
 
-Powered by: Flame Division • AI Artist Engine
+🔥 Tier 1 — BASIC PACKAGE ($9.99/mo)
+
+Deliverables
+	•	3 AI-generated hooks
+	•	1 beat recommendation
+	•	Mini artist bio
+	•	Social captions
+	•	Basic landing page
+	•	Lyric clean-up
+	•	Upload guidance (manual)
 
 ⸻
 
-🔥 Tier 1 — BASIC PACKAGE ($9.99/month)
-
-For beginners, new artists, or returning artists who need simplicity.
+⚡️ Tier 2 — MEDIUM MOGUL ($19.99/mo)
 
 Deliverables
-	•	3 AI-generated hooks per month
-	•	1 beat style recommendation
-	•	Auto-written artist bio (mini version)
-	•	Auto-written captions for social posting
-	•	1 landing page generated (Basic Theme)
-	•	Access to upload guidance (manual submission)
-	•	Unlimited lyric clean-up + refinements
-
-Perfect For
-
-Artists who need ideas, structure, and direction.
+	•	10 hooks
+	•	3 full song concepts (8 bars + chorus)
+	•	3 beat variations
+	•	Branding kit
+	•	Pro landing page
+	•	Promo post kit
+	•	Open mic prep kit
+	•	Reel scripts
 
 ⸻
 
-⚡️ Tier 2 — MEDIUM MOGUL PACKAGE ($19.99/month)
-
-The most popular tier. A real jump in professionalism.
+👑 Tier 3 — FULL MANAGER MODE ($49.99/mo)
 
 Deliverables
-	•	10 AI-generated hooks per month
-	•	3 fully structured song concepts (8-bar + chorus)
-	•	Beat matching engine (3 beat variations)
-	•	Branding kit (Stage name, themes, colors)
-	•	Professional landing page (Pro Theme)
-	•	Promo pack:
-	•	Auto-written promo posts
-	•	Tag strategy
-	•	Playlist description copy
-	•	Open mic + audition preparation kit
-	•	Training video scripts for reels
-
-Perfect For
-
-Artists leveling up who want consistent content + clean branding.
-
-⸻
-
-👑 Tier 3 — FULL MANAGER MODE ($49.99/month)
-
-This is the “AI Manager” level — full automation from idea to release.
-
-Deliverables
-	•	25 AI-generated hooks monthly
-	•	5 structured songs (8–16 bars each)
-	•	Full beat palette (10 variations per track)
-	•	AI Mix/Master pre-settings (for engineers)
-	•	Artist EPK (Electronic Press Kit)
-	•	Interview script preparation
-	•	High-impact landing page (Premium Theme + Custom Elements)
-	•	Auto-created:
+	•	25 hooks
+	•	5 structured songs
+	•	Beat palette (10 variations)
+	•	Mix/Master presets
+	•	Full EPK
+	•	Interview scripts
+	•	Premium landing page
 	•	Press release
-	•	Show pitch sheet
 	•	Sponsorship pitch
-	•	Branding pillars
 	•	Ghostwriting (2 songs/mo)
-	•	Promo campaign blueprint for IG/FB/YT
-	•	Event + open mic submission templates
-	•	“Road to Release” 7-step plan
-
-Perfect For
-
-Serious artists who want label-level support without the label.
+	•	Promo campaign blueprint
+	•	Event submission templates
 
 ⸻
 
-🧩 ADD-ON EXTRAS (For Any Tier)
+⚙️ Internal Note
 
-$29 One-Time — Custom Cover Art (AI Cinematic Edition)
-
-High-res, stylized, album-ready.
-
-$49 One-Time — Full Landing Page Overhaul
-
-Customized animations, sections, colors, galleries.
-
-$99 — Full Single Release Pack
-	•	Cover art
-	•	Caption pack
-	•	Hashtag matrix
-	•	Promo rollout guide
-	•	Artist one-sheet
+Artists will feel like they’re getting label power without label slavery.

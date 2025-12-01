@@ -2,24 +2,24 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>🔥 Flame Division MusicAI — ShadowSoundProtocol</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="description" content="Flame Division MusicAI — holographic avatar, AI bars, and ShadowSoundProtocol experiments." />
-
+  <title>Flame Division MusicAI — Flame Law Hologram</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description"
+        content="Flame Division MusicAI — Flame Law holographic avatar performing bar-heavy AI-certified lyrics. ShadowSoundProtocol live demo." />
   <style>
     :root {
-      --bg-dark: #05060a;
-      --bg-panel: #101320;
-      --accent-gold: #d4af37;
-      --accent-ember: #ff6a2a;
-      --accent-cyan: #3ce7ff;
-      --text-main: #f5f5f7;
-      --text-muted: #9da3b5;
-      --border-soft: #272b3b;
-      --shadow-strong: 0 0 35px rgba(0,0,0,0.7);
-      --radius-lg: 20px;
-      --radius-pill: 999px;
-      --transition-fast: 0.18s ease-out;
+      --bg: #05060a;
+      --bg-alt: #0b0e16;
+      --accent: #d4af37;
+      --accent-soft: rgba(212, 175, 55, 0.35);
+      --accent-strong: rgba(255, 180, 60, 0.85);
+      --text-main: #f5f7ff;
+      --text-soft: #aeb4c6;
+      --danger: #ff4b4b;
+      --border-subtle: rgba(255, 255, 255, 0.08);
+      --card-radius: 18px;
+      --shadow-strong: 0 0 40px rgba(0, 0, 0, 0.9);
+      --shadow-gold: 0 0 24px rgba(212, 175, 55, 0.55);
     }
 
     * {
@@ -29,564 +29,642 @@
     }
 
     body {
-      min-height: 100vh;
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
-                   Segoe UI, sans-serif;
+        Segoe UI, Roboto, sans-serif;
       background:
-        radial-gradient(circle at top, rgba(60,231,255,0.14), transparent 55%),
-        radial-gradient(circle at bottom, rgba(212,175,55,0.08), transparent 60%),
-        #02030a;
+        radial-gradient(circle at top, #18243a 0, transparent 55%),
+        radial-gradient(circle at bottom, #05060a 0, #000 60%);
       color: var(--text-main);
+      min-height: 100vh;
       display: flex;
-      align-items: stretch;
       justify-content: center;
-      padding: 24px 12px;
+      padding: 32px 16px 48px;
     }
 
-    .page-shell {
+    .page {
       width: 100%;
-      max-width: 1120px;
-      background: linear-gradient(145deg, #060814 0%, #05060b 50%, #020308 100%);
-      border-radius: 24px;
-      border: 1px solid rgba(255,255,255,0.05);
-      box-shadow: 0 0 60px rgba(0,0,0,0.85);
-      overflow: hidden;
-      display: grid;
-      grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+      max-width: 1100px;
+      background: linear-gradient(145deg, rgba(4, 6, 16, 0.98), rgba(5, 8, 20, 0.98));
+      border-radius: 28px;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      box-shadow:
+        0 0 40px rgba(0, 0, 0, 0.9),
+        0 0 120px rgba(0, 0, 0, 0.9);
+      padding: 24px 18px 28px;
+      backdrop-filter: blur(18px);
     }
 
-    @media (max-width: 880px) {
-      .page-shell {
-        grid-template-columns: minmax(0, 1fr);
+    @media (min-width: 900px) {
+      .page {
+        padding: 28px 32px 32px;
       }
     }
 
-    .panel {
-      padding: 24px 24px 28px;
-    }
-
-    .panel--avatar {
-      position: relative;
-      background:
-        radial-gradient(circle at top, rgba(212,175,55,0.12), transparent 60%),
-        radial-gradient(circle at bottom, rgba(0,0,0,0.75), #040510 70%);
+    header {
       display: flex;
       flex-direction: column;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
+      gap: 10px;
+      margin-bottom: 22px;
     }
 
-    .panel--info {
-      background: radial-gradient(circle at top left, rgba(60,231,255,0.16), transparent 55%);
-      border-left: 1px solid rgba(255,255,255,0.03);
-    }
-
-    .tag-row {
+    .badge-row {
       display: flex;
-      flex-wrap: wrap;
+      align-items: center;
       gap: 8px;
-      margin-bottom: 12px;
-    }
-
-    .tag {
-      padding: 4px 10px;
-      border-radius: var(--radius-pill);
-      border: 1px solid rgba(255,255,255,0.12);
-      font-size: 11px;
-      letter-spacing: 0.06em;
+      font-size: 13px;
+      color: var(--accent-soft);
       text-transform: uppercase;
-      color: var(--text-muted);
-      background: radial-gradient(circle at top left, rgba(212,175,55,0.18), transparent 60%);
+      letter-spacing: 0.13em;
     }
 
-    .tag--hot {
-      border-color: rgba(255,106,42,0.7);
-      color: #ffd3b8;
-      background: radial-gradient(circle at top, rgba(255,106,42,0.24), transparent 60%);
+    .badge-row span {
+      padding: 4px 9px;
+      border-radius: 999px;
+      border: 1px solid rgba(212, 175, 55, 0.5);
+      background: radial-gradient(circle at top left, rgba(212, 175, 55, 0.22), transparent 60%);
     }
 
     h1 {
       font-size: clamp(26px, 3vw, 32px);
       line-height: 1.15;
-      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+    }
+
+    h1 .script {
+      font-weight: 500;
+      font-size: 0.82em;
+      color: var(--accent-soft);
+      text-transform: none;
+      letter-spacing: 0.04em;
     }
 
     .subtitle {
       font-size: 14px;
-      color: var(--text-muted);
-      max-width: 32rem;
-      line-height: 1.6;
-      margin-bottom: 18px;
+      color: var(--text-soft);
+      max-width: 620px;
     }
 
-    .divider {
-      height: 1px;
-      width: 100%;
-      background: linear-gradient(90deg,
-        transparent,
-        rgba(255,255,255,0.25),
-        transparent
-      );
-      margin: 10px 0 16px;
+    main {
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2.2fr);
+      gap: 20px;
     }
 
-    /* AVATAR / HOLOGRAM */
+    @media (max-width: 860px) {
+      main {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
 
-    .avatar-wrap {
+    /* HOLOGRAM CARD */
+
+    .holo-card {
       position: relative;
-      width: min(340px, 80vw);
-      margin: 4px auto 10px;
-      aspect-ratio: 3 / 4;
-      border-radius: 30px;
+      border-radius: var(--card-radius);
+      background: radial-gradient(circle at top, #151c2c 0, #05060a 60%);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      box-shadow: var(--shadow-strong), var(--shadow-gold);
+      padding: 16px 16px 20px;
       overflow: hidden;
-      background: radial-gradient(circle at top, #1f2738, #050712 75%);
-      box-shadow:
-        0 0 40px rgba(0,0,0,0.9),
-        0 0 55px rgba(60,231,255,0.5),
-        0 0 120px rgba(255,106,42,0.4);
-      border: 1px solid rgba(163,197,255,0.32);
+      isolation: isolate;
     }
 
-    .avatar-wrap::before {
+    .holo-card::before {
       content: "";
       position: absolute;
       inset: -40%;
       background:
-        radial-gradient(circle at top, rgba(60,231,255,0.25), transparent 60%),
-        radial-gradient(circle at bottom, rgba(255,106,42,0.32), transparent 65%);
+        radial-gradient(circle at 20% 0, rgba(111, 194, 255, 0.15), transparent 55%),
+        radial-gradient(circle at 80% 100%, rgba(255, 125, 60, 0.28), transparent 55%);
       mix-blend-mode: screen;
+      opacity: 0.8;
+      pointer-events: none;
+      z-index: -1;
+      animation: holoGlow 14s ease-in-out infinite alternate;
+    }
+
+    .frame-title {
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--accent-soft);
+      margin-bottom: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .frame-title span {
+      font-size: 11px;
+      color: rgba(174, 180, 198, 0.7);
+    }
+
+    .holo-frame {
+      position: relative;
+      border-radius: 22px;
+      border: 1px solid rgba(212, 175, 55, 0.55);
+      box-shadow:
+        0 0 22px rgba(212, 175, 55, 0.6),
+        0 0 70px rgba(0, 0, 0, 0.8);
+      overflow: hidden;
+      aspect-ratio: 3 / 4;
+      background: radial-gradient(circle at top, #151b28 0, #05060a 60%);
+    }
+
+    .holo-frame::before {
+      content: "";
+      position: absolute;
+      inset: -15%;
+      background:
+        radial-gradient(circle at 20% 0, rgba(255, 255, 255, 0.18), transparent 55%),
+        radial-gradient(circle at 80% 100%, rgba(255, 153, 0, 0.22), transparent 60%);
+      mix-blend-mode: screen;
+      opacity: 0.7;
+      pointer-events: none;
+      animation: scanline 6s linear infinite;
+    }
+
+    .holo-video,
+    .holo-image-fallback {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: saturate(1.08) contrast(1.05);
+    }
+
+    .holo-image-fallback {
+      position: absolute;
+      inset: 0;
+      opacity: 0.2; /* only visible before video loads */
+    }
+
+    .holo-overlay-grid {
+      position: absolute;
+      inset: 0;
+      background-image: linear-gradient(
+          rgba(255, 255, 255, 0.06) 1px,
+          transparent 1px
+        ), linear-gradient(
+          90deg,
+          rgba(255, 255, 255, 0.04) 1px,
+          transparent 1px
+        );
+      background-size: 32px 32px;
+      mix-blend-mode: soft-light;
       opacity: 0.75;
       pointer-events: none;
     }
 
-    .avatar-glass {
+    .holo-scanline {
       position: absolute;
-      inset: 0;
-      background: radial-gradient(circle at bottom, rgba(0,0,0,0.75), rgba(0,0,0,0.98));
-      mix-blend-mode: multiply;
-      opacity: 0.68;
-    }
-
-    .avatar-img {
-      position: relative;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      filter:
-        saturate(1.05)
-        contrast(1.05)
-        drop-shadow(0 0 35px rgba(0,0,0,0.85));
-    }
-
-    .avatar-scanline {
-      position: absolute;
-      inset: 0;
-      background-image: repeating-linear-gradient(
+      left: 0;
+      right: 0;
+      height: 32%;
+      background: linear-gradient(
         to bottom,
-        rgba(255,255,255,0.06) 0,
-        rgba(255,255,255,0.06) 1px,
-        transparent 2px,
-        transparent 4px
+        rgba(255, 255, 255, 0) 0,
+        rgba(122, 209, 255, 0.18) 45%,
+        rgba(255, 255, 255, 0) 100%
       );
-      mix-blend-mode: soft-light;
-      opacity: 0.65;
+      mix-blend-mode: screen;
+      animation: sweep 5s ease-in-out infinite;
       pointer-events: none;
     }
 
-    .avatar-horizon {
+    .holo-play-button {
       position: absolute;
-      left: -10%;
-      right: -10%;
-      bottom: 18%;
-      height: 1px;
-      background: linear-gradient(90deg,
-        transparent,
-        rgba(60,231,255,0.0),
-        rgba(60,231,255,0.8),
-        rgba(212,175,55,0.9),
-        rgba(60,231,255,0.0),
-        transparent
-      );
-      box-shadow:
-        0 0 25px rgba(60,231,255,0.8),
-        0 0 40px rgba(212,175,55,0.8);
-      opacity: 0.9;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none;
     }
 
-    .avatar-caption {
-      text-align: center;
-      font-size: 11px;
-      text-transform: uppercase;
+    .holo-play-button button {
+      pointer-events: auto;
+      border: 1px solid rgba(212, 175, 55, 0.7);
+      background: radial-gradient(circle at 30% 0, #f6e7b2 0, #c28b1a 40%, #7a4e00 100%);
+      color: #1a1200;
+      border-radius: 999px;
+      padding: 10px 26px;
+      font-size: 13px;
+      font-weight: 600;
       letter-spacing: 0.12em;
-      color: var(--text-muted);
-      opacity: 0.85;
+      text-transform: uppercase;
+      box-shadow:
+        0 0 18px rgba(212, 175, 55, 0.9),
+        0 0 45px rgba(0, 0, 0, 0.9);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      transition: transform 0.12s ease, box-shadow 0.12s ease, filter 0.12s ease;
     }
 
-    .avatar-caption span {
-      color: var(--accent-gold);
+    .holo-play-button button span {
+      font-size: 11px;
+      opacity: 0.85;
+      text-transform: none;
+      letter-spacing: 0.06em;
+    }
+
+    .holo-play-button button:hover {
+      transform: translateY(-1px) scale(1.02);
+      filter: brightness(1.05);
+      box-shadow:
+        0 0 22px rgba(212, 175, 55, 1),
+        0 0 60px rgba(0, 0, 0, 0.9);
+    }
+
+    .holo-caption {
+      margin-top: 12px;
+      font-size: 12px;
+      color: var(--text-soft);
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .holo-caption strong {
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .chip {
+      padding: 3px 9px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      font-size: 11px;
+      color: rgba(174, 180, 198, 0.8);
+      background: rgba(5, 8, 20, 0.9);
     }
 
     /* AUDIO PANEL */
 
-    .track-list {
+    .audio-panel {
+      border-radius: var(--card-radius);
+      background: radial-gradient(circle at top left, #181b26 0, #05060a 70%);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 16px 16px 20px;
+      box-shadow: 0 0 28px rgba(0, 0, 0, 0.85);
       display: flex;
       flex-direction: column;
-      gap: 10px;
-      margin-bottom: 18px;
+      gap: 14px;
     }
 
-    .track-card {
+    .audio-panel h2 {
+      font-size: 15px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 4px;
+    }
+
+    .audio-sub {
+      font-size: 12px;
+      color: var(--text-soft);
+      margin-bottom: 10px;
+    }
+
+    .audio-track {
+      border-radius: 15px;
+      padding: 10px 10px 10px 12px;
+      border: 1px solid var(--border-subtle);
+      background: linear-gradient(135deg, rgba(12, 15, 26, 0.98), rgba(8, 10, 18, 0.98));
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .audio-header {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 12px;
-      padding: 10px 12px;
-      border-radius: 14px;
-      background: radial-gradient(circle at top left, rgba(212,175,55,0.08), rgba(7,8,16,0.98));
-      border: 1px solid rgba(255,255,255,0.06);
-      box-shadow: 0 0 20px rgba(0,0,0,0.65);
+      gap: 8px;
     }
 
-    .track-meta {
+    .audio-meta {
       display: flex;
       flex-direction: column;
-      gap: 2px;
-      min-width: 0;
+      gap: 1px;
     }
 
-    .track-title {
+    .audio-title {
       font-size: 13px;
       font-weight: 600;
-      white-space: nowrap;
-      text-overflow: ellipsis;
-      overflow: hidden;
     }
 
-    .track-tagline {
+    .audio-tagline {
       font-size: 11px;
-      color: var(--text-muted);
-      opacity: 0.9;
-    }
-
-    .track-pill {
-      font-size: 10px;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color: rgba(255,255,255,0.75);
+      color: var(--text-soft);
     }
 
     .audio-btn {
-      flex-shrink: 0;
-      border-radius: var(--radius-pill);
-      border: 1px solid rgba(255,255,255,0.22);
-      padding: 8px 14px;
-      font-size: 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(212, 175, 55, 0.7);
+      background: radial-gradient(circle at 20% 0, rgba(212, 175, 55, 0.24), rgba(10, 8, 0, 0.9));
+      color: var(--accent);
+      padding: 6px 14px;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      background: radial-gradient(circle at top, rgba(212,175,55,0.45), rgba(212,175,55,0.05));
-      color: #1b1205;
       cursor: pointer;
-      transition: transform var(--transition-fast), box-shadow var(--transition-fast), background var(--transition-fast);
-      box-shadow:
-        0 0 20px rgba(212,175,55,0.45),
-        0 0 40px rgba(0,0,0,0.85);
-    }
-
-    .audio-btn span.icon {
-      font-size: 13px;
+      box-shadow: 0 0 10px rgba(212, 175, 55, 0.4);
+      transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.12s ease;
     }
 
     .audio-btn:hover {
       transform: translateY(-1px);
-      box-shadow:
-        0 0 26px rgba(212,175,55,0.7),
-        0 0 45px rgba(0,0,0,0.9);
-      background: radial-gradient(circle at top, rgba(255,196,94,0.9), rgba(212,175,55,0.08));
+      box-shadow: 0 0 18px rgba(212, 175, 55, 0.75);
+      background: radial-gradient(circle at 20% 0, rgba(246, 226, 155, 0.6), rgba(12, 10, 2, 0.98));
     }
 
-    .audio-btn.is-playing {
-      background: radial-gradient(circle at top, rgba(60,231,255,0.9), rgba(60,231,255,0.1));
-      border-color: rgba(60,231,255,0.9);
-      color: #020308;
+    .audio-btn[data-state="playing"] {
+      background: radial-gradient(circle at 20% 0, rgba(255, 255, 255, 0.9), #d4af37);
+      color: #1a1200;
       box-shadow:
-        0 0 26px rgba(60,231,255,0.7),
-        0 0 45px rgba(0,0,0,0.9);
+        0 0 16px rgba(212, 175, 55, 0.9),
+        0 0 40px rgba(0, 0, 0, 0.9);
     }
 
-    .now-playing {
+    .audio-bars {
+      font-family: "SF Mono", ui-monospace, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
       font-size: 11px;
-      color: var(--text-muted);
-      letter-spacing: 0.09em;
-      text-transform: uppercase;
+      color: rgba(174, 180, 198, 0.9);
+      margin-top: 3px;
+      line-height: 1.5;
+      max-height: 4.4em;
+      overflow: hidden;
+    }
+
+    .footer-note {
+      margin-top: 14px;
+      font-size: 11px;
+      color: rgba(153, 163, 186, 0.82);
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      padding-top: 10px;
       display: flex;
-      align-items: center;
-      gap: 8px;
-      margin-bottom: 12px;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
     }
 
-    .now-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: radial-gradient(circle, var(--accent-ember), #ff2b2b);
-      box-shadow: 0 0 12px rgba(255,64,0,0.9);
-      animation: pulseDot 1.2s infinite;
+    .footer-note a {
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px dotted rgba(212, 175, 55, 0.7);
     }
 
-    .now-title {
-      color: #ffd89d;
+    .footer-note a:hover {
+      text-decoration: none;
+      border-bottom-style: solid;
     }
 
-    @keyframes pulseDot {
-      0% { transform: scale(1); opacity: 1; }
-      60% { transform: scale(1.4); opacity: 0.25; }
-      100% { transform: scale(1); opacity: 1; }
+    /* ANIMATIONS */
+
+    @keyframes sweep {
+      0% { transform: translateY(-120%); opacity: 0; }
+      32% { opacity: 0.9; }
+      70% { opacity: 0.2; }
+      100% { transform: translateY(120%); opacity: 0; }
     }
 
-    .footnote {
-      font-size: 11px;
-      color: var(--text-muted);
-      line-height: 1.6;
-      margin-top: 6px;
+    @keyframes holoGlow {
+      0% { opacity: 0.7; transform: translate3d(0, 0, 0); }
+      100% { opacity: 1; transform: translate3d(0, -10px, 0); }
     }
 
-    .footnote strong {
-      color: var(--accent-cyan);
-      font-weight: 500;
+    @keyframes scanline {
+      0% { transform: translate3d(0, 0, 0); opacity: 0.7; }
+      100% { transform: translate3d(0, -18px, 0); opacity: 0.3; }
     }
 
-    .footnote code {
-      font-size: 10px;
-      background: rgba(15,17,30,0.95);
-      padding: 2px 5px;
-      border-radius: 6px;
-      border: 1px solid rgba(255,255,255,0.06);
-    }
-
-    .proto-row {
-      margin-top: 16px;
-      padding: 10px 12px;
-      border-radius: 14px;
-      border: 1px dashed rgba(96,120,204,0.55);
-      background: radial-gradient(circle at top left, rgba(96,120,204,0.22), rgba(6,8,20,0.98));
-      font-size: 11px;
-      color: var(--text-muted);
-      line-height: 1.6;
-    }
-
-    .proto-row strong {
-      color: #b9c5ff;
+    @keyframes float-soft {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
     }
   </style>
 </head>
 <body>
-
-<div class="page-shell">
-  <!-- LEFT: AVATAR / HOLOGRAM -->
-  <section class="panel panel--avatar">
-    <div>
-      <div class="tag-row">
-        <span class="tag tag--hot">Live Prototype</span>
-        <span class="tag">Flame Division • MusicAI</span>
+  <div class="page">
+    <header>
+      <div class="badge-row">
+        <span>🔥 Flame Division MusicAI</span>
+        <span>ShadowSoundProtocol · Live Demo</span>
       </div>
-      <h1>FLAME-DIVISION-MUSICAI</h1>
+      <h1>
+        Flame Law Hologram<span class="script"> · AI-Aligned Bar Engine</span>
+      </h1>
       <p class="subtitle">
-        Music Industry AI — <strong>ShadowSoundProtocol</strong>.  
-        Holographic avatar, legal shield, and cipher-grade lyrics rendered straight from the Flame Codex.
+        Certified AI officer meets shadow-coded lyricist. This page hosts the
+        <strong>Flame Law avatar</strong> performing over encrypted frequencies —
+        with on-page playback for multiple MusicAI ciphers.
       </p>
-    </div>
+    </header>
 
-    <div class="avatar-wrap">
-      <!-- Avatar image -->
-      <img
-        class="avatar-img"
-        src="../assets/avatar/FlameLaw_Avatar_V1.png"
-        alt="Flame Law — Holographic Avatar"
-      />
-      <div class="avatar-glass"></div>
-      <div class="avatar-scanline"></div>
-      <div class="avatar-horizon"></div>
-    </div>
-
-    <p class="avatar-caption">
-      <span>Flame Law</span> • ShadowSound Hologram V1 — Live in the chambers.
-    </p>
-  </section>
-
-  <!-- RIGHT: AUDIO / CONTROLS -->
-  <section class="panel panel--info">
-    <div class="divider"></div>
-
-    <div class="now-playing" id="nowPlayingRow" style="opacity:0.3;">
-      <div class="now-dot"></div>
-      <div>Now Playing: <span class="now-title" id="nowPlayingTitle">Idle — awaiting command.</span></div>
-    </div>
-
-    <div class="track-list">
-      <!-- Track 1 -->
-      <article class="track-card">
-        <div class="track-meta">
-          <div class="track-pill">BAR SEQUENCE 01</div>
-          <div class="track-title">FlameLaw Intro</div>
-          <div class="track-tagline">Opening transmission — legal fire over dark ether.</div>
+    <main>
+      <!-- HOLOGRAPHIC PERFORMANCE PANEL -->
+      <section class="holo-card">
+        <div class="frame-title">
+          <div>Primary Performance · FLAME LAW V1</div>
+          <span>Hologram Render · LumaFusion · D-ID Source</span>
         </div>
-        <button
-          class="audio-btn"
-          data-track-id="intro"
-        >
-          <span class="icon">▶️</span>
-          <span>Play</span>
-        </button>
-      </article>
 
-      <!-- Track 2 -->
-      <article class="track-card">
-        <div class="track-meta">
-          <div class="track-pill">BAR SEQUENCE 02</div>
-          <div class="track-title">Holo Chambers Freestyle</div>
-          <div class="track-tagline">Cipher in the chambers — echo inside the vector walls.</div>
+        <div class="holo-frame" style="animation: float-soft 9s ease-in-out infinite;">
+          <!-- Static fallback (shows under video & while loading) -->
+          <img
+            src="../assets/avatar/FlameLaw_Avatar_V1.png"
+            alt="Flame Law avatar"
+            class="holo-image-fallback"
+          />
+
+          <!-- Main video -->
+          <video
+            id="flameVideo"
+            class="holo-video"
+            playsinline
+            preload="metadata"
+          >
+            <!-- If your filename is different, edit the src below -->
+            <source src="../assets/avatar/video/FlameLaw_Avatar_V1.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+
+          <div class="holo-overlay-grid"></div>
+          <div class="holo-scanline"></div>
+
+          <div class="holo-play-button">
+            <button id="videoControlBtn">
+              ▶︎ PLAY HOLOGRAM
+              <span>Flame Law · Shadow Docket Cipher</span>
+            </button>
+          </div>
         </div>
-        <button
-          class="audio-btn"
-          data-track-id="holo"
-        >
-          <span class="icon">▶️</span>
-          <span>Play</span>
-        </button>
-      </article>
 
-      <!-- Track 3 -->
-      <article class="track-card">
-        <div class="track-meta">
-          <div class="track-pill">BAR SEQUENCE 03</div>
-          <div class="track-title">Shadow Docket Cipher</div>
-          <div class="track-tagline">Under-seal verses for late-night system reviews.</div>
+        <div class="holo-caption">
+          <div>
+            <strong>Flame Law Avatar V1</strong><br />
+            Generated from certified CAIO/CAIIP metadata, rendered through
+            holographic motion and shield layering.
+          </div>
+          <div class="chip">
+            Mode: Non-commercial demo · Rights: Flame Division / Andrew W. Davis
+          </div>
         </div>
-        <button
-          class="audio-btn"
-          data-track-id="shadow"
-        >
-          <span class="icon">▶️</span>
-          <span>Play</span>
-        </button>
-      </article>
-    </div>
+      </section>
 
-    <p class="footnote">
-      All vocals are generated &amp; contained within the <strong>Flame Division MusicAI</strong> stack.  
-      Repo: <code>Flame-Division-MusicAI</code> — this page is the hologram gate.
-    </p>
+      <!-- AUDIO / BARS PANEL -->
+      <aside class="audio-panel">
+        <h2>ShadowSoundProtocol · Audio Nodes</h2>
+        <p class="audio-sub">
+          Tap a node to let MusicAI spit. Only one cipher plays at a time —
+          the rest stand down by Flame Law.
+        </p>
 
-    <div class="proto-row">
-      <strong>Next Iteration:</strong> wire this page into a vector-DB + Unreal / WebGL stage so the avatar
-      reacts to lyrics, scroll position, and GitHub events.  
-      For now, V1 is a clean, controlled showcase: three certified bar-packs, one Flame Law guardian.
-    </div>
-  </section>
-</div>
+        <!-- TRACK 1 -->
+        <article class="audio-track">
+          <div class="audio-header">
+            <div class="audio-meta">
+              <div class="audio-title">FlameLaw_Intro.mp3</div>
+              <div class="audio-tagline">Opening Statement · Court of Creation</div>
+            </div>
+            <button class="audio-btn" data-audio-id="track-intro" data-state="idle">
+              ▶︎ PLAY
+            </button>
+          </div>
+          <div class="audio-bars">
+            “Flame Law loaded in the docket, I don’t bargain with the odds,<br />
+            I just cross-examine data while I’m dialoguing with gods.”
+          </div>
+          <audio id="track-intro" src="../assets/flamelaw_intro.mp3"></audio>
+        </article>
 
-<!-- HIDDEN AUDIO ELEMENTS -->
-<audio id="audio-intro" src="../assets/flamelaw_intro.mp3"></audio>
-<audio id="audio-holo" src="../assets/holo_chambers_freestyle.mp3"></audio>
-<audio id="audio-shadow" src="../assets/shadow_docket_cipher.mp3"></audio>
+        <!-- TRACK 2 -->
+        <article class="audio-track">
+          <div class="audio-header">
+            <div class="audio-meta">
+              <div class="audio-title">Holo_Chambers_Freestyle.mp3</div>
+              <div class="audio-tagline">Training Sim · Holographic War Room</div>
+            </div>
+            <button class="audio-btn" data-audio-id="track-holo" data-state="idle">
+              ▶︎ PLAY
+            </button>
+          </div>
+          <div class="audio-bars">
+            “Every bar a data packet, every cadence is a key,<br />
+            when I’m routing through the matrix, every firewall bows to me.”
+          </div>
+          <audio id="track-holo" src="../assets/holo_chambers_freestyle.mp3"></audio>
+        </article>
 
-<script>
-  (function () {
-    const tracks = {
-      intro: {
-        id: 'intro',
-        title: 'FlameLaw Intro',
-        audio: document.getElementById('audio-intro')
-      },
-      holo: {
-        id: 'holo',
-        title: 'Holo Chambers Freestyle',
-        audio: document.getElementById('audio-holo')
-      },
-      shadow: {
-        id: 'shadow',
-        title: 'Shadow Docket Cipher',
-        audio: document.getElementById('audio-shadow')
-      }
-    };
+        <!-- TRACK 3 -->
+        <article class="audio-track">
+          <div class="audio-header">
+            <div class="audio-meta">
+              <div class="audio-title">Shadow_Docket_Cipher.mp3</div>
+              <div class="audio-tagline">Sealed Motion · After-Hours Tribunal</div>
+            </div>
+            <button class="audio-btn" data-audio-id="track-shadow" data-state="idle">
+              ▶︎ PLAY
+            </button>
+          </div>
+          <div class="audio-bars">
+            “I keep a shadow docket where the verdicts never tweet,<br />
+            but the universe updates every time my heart beats.”
+          </div>
+          <audio id="track-shadow" src="../assets/shadow_docket_cipher.mp3"></audio>
+        </article>
 
-    const buttons = document.querySelectorAll('.audio-btn');
-    const nowRow   = document.getElementById('nowPlayingRow');
-    const nowTitle = document.getElementById('nowPlayingTitle');
+        <div class="footer-note">
+          <div>
+            Flame Division MusicAI operates under internal
+            <strong>Flame Law · ShadowSoundProtocol</strong>. Public playback is demo-only.
+          </div>
+          <div>
+            Repo:&nbsp;
+            <a href="https://github.com/Andrew-Davis-Ai-portfolio/Flame-Division-MusicAI" target="_blank" rel="noopener">
+              Flame-Division-MusicAI
+            </a>
+          </div>
+        </div>
+      </aside>
+    </main>
+  </div>
 
-    let currentId = null;
+  <script>
+    // HOLOGRAM VIDEO CONTROL
+    (function () {
+      const video = document.getElementById("flameVideo");
+      const btn = document.getElementById("videoControlBtn");
 
-    function setNowPlaying(title) {
-      if (!title) {
-        nowTitle.textContent = 'Idle — awaiting command.';
-        nowRow.style.opacity = '0.3';
-        return;
-      }
-      nowTitle.textContent = title;
-      nowRow.style.opacity = '1';
-    }
+      if (!video || !btn) return;
 
-    function stopAll(exceptId) {
-      Object.values(tracks).forEach(t => {
-        if (!t.audio) return;
-        if (t.id !== exceptId) {
-          t.audio.pause();
-          t.audio.currentTime = 0;
+      btn.addEventListener("click", function () {
+        if (video.paused) {
+          // Pause all other audio when video starts
+          pauseAllAudio();
+          video.play().catch(() => {});
+          btn.textContent = "⏸ PAUSE HOLOGRAM";
+        } else {
+          video.pause();
+          btn.textContent = "▶︎ PLAY HOLOGRAM";
         }
       });
-      buttons.forEach(btn => {
-        btn.classList.remove('is-playing');
-        const icon = btn.querySelector('.icon');
-        const label = btn.querySelector('span:last-child');
-        if (icon) icon.textContent = '▶️';
-        if (label) label.textContent = 'Play';
+
+      video.addEventListener("ended", function () {
+        btn.textContent = "▶︎ PLAY HOLOGRAM";
       });
-    }
+    })();
 
-    buttons.forEach(btn => {
-      btn.addEventListener('click', () => {
-        const trackId = btn.getAttribute('data-track-id');
-        const track   = tracks[trackId];
-        if (!track || !track.audio) return;
+    // AUDIO CONTROLS (ONE AT A TIME)
+    (function () {
+      const buttons = Array.from(document.querySelectorAll(".audio-btn"));
+      const audioEls = buttons.map((btn) =>
+        document.getElementById(btn.dataset.audioId)
+      );
 
-        // If this is already playing, pause it.
-        if (currentId === trackId && !track.audio.paused) {
-          track.audio.pause();
-          currentId = null;
-          stopAll(); // will also reset UI
-          setNowPlaying(null);
-          return;
-        }
+      window.pauseAllAudio = function () {
+        audioEls.forEach((audio, index) => {
+          if (!audio) return;
+          audio.pause();
+          audio.currentTime = 0;
+          const btn = buttons[index];
+          if (btn) {
+            btn.dataset.state = "idle";
+            btn.textContent = "▶︎ PLAY";
+          }
+        });
+      };
 
-        // Switch track
-        stopAll(trackId);
-        currentId = trackId;
+      buttons.forEach((btn) => {
+        const audioId = btn.dataset.audioId;
+        const audio = document.getElementById(audioId);
+        if (!audio) return;
 
-        track.audio.play().then(() => {
-          btn.classList.add('is-playing');
-          const icon = btn.querySelector('.icon');
-          const label = btn.querySelector('span:last-child');
-          if (icon) icon.textContent = '⏸';
-          if (label) label.textContent = 'Pause';
-          setNowPlaying(track.title);
-        }).catch(err => {
-          console.error('Playback error:', err);
+        btn.addEventListener("click", function () {
+          const isPlaying = btn.dataset.state === "playing";
+
+          // Always stop everything else first
+          pauseAllAudio();
+
+          if (!isPlaying) {
+            audio.play().catch(() => {});
+            btn.dataset.state = "playing";
+            btn.textContent = "⏸ PAUSE";
+          }
         });
 
-        // When the track ends, reset UI
-        track.audio.onended = () => {
-          if (currentId === trackId) {
-            currentId = null;
-            stopAll();
-            setNowPlaying(null);
-          }
-        };
+        audio.addEventListener("ended", function () {
+          btn.dataset.state = "idle";
+          btn.textContent = "▶︎ PLAY";
+        });
       });
-    });
-  })();
-</script>
-
+    })();
+  </script>
 </body>
 </html>

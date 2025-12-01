@@ -2,26 +2,24 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>🔥 Flame Division MusicAI — FlameLaw Avatar</title>
+  <title>🔥 Flame Division MusicAI — ShadowSoundProtocol</title>
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="description" content="Flame Division MusicAI — holographic CAIO avatar spitting bar-heavy protocol over the Music Industry AI stack." />
+  <meta name="description" content="Flame Division MusicAI — holographic avatar, AI bars, and ShadowSoundProtocol experiments." />
 
   <style>
     :root {
-      --bg: #05070b;
-      --bg-alt: #0b0f18;
-      --accent: #d4af37;     /* ember gold */
-      --accent-soft: #f6d269;
-      --holo: #37e2ff;       /* cyan hologram */
-      --text-main: #f5f7fb;
-      --text-soft: #b6bfd8;
-      --danger: #ff4b4b;
-      --radius-lg: 18px;
-      --radius-md: 12px;
-      --shadow-soft: 0 18px 45px rgba(0, 0, 0, 0.65);
-      --grad-holo: radial-gradient(circle at top, rgba(55,226,255,0.55), transparent 55%);
-      --grad-gold: linear-gradient(135deg, #d4af37, #ff7c2a);
-      --border-holo: 1px solid rgba(55,226,255,0.45);
+      --bg-dark: #05060a;
+      --bg-panel: #101320;
+      --accent-gold: #d4af37;
+      --accent-ember: #ff6a2a;
+      --accent-cyan: #3ce7ff;
+      --text-main: #f5f5f7;
+      --text-muted: #9da3b5;
+      --border-soft: #272b3b;
+      --shadow-strong: 0 0 35px rgba(0,0,0,0.7);
+      --radius-lg: 20px;
+      --radius-pill: 999px;
+      --transition-fast: 0.18s ease-out;
     }
 
     * {
@@ -31,521 +29,564 @@
     }
 
     body {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
-        "Segoe UI", sans-serif;
-      background:
-        radial-gradient(circle at top, rgba(212,175,55,0.12), transparent 55%),
-        radial-gradient(circle at bottom, rgba(55,226,255,0.12), transparent 55%),
-        #020308;
-      color: var(--text-main);
       min-height: 100vh;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+                   Segoe UI, sans-serif;
+      background:
+        radial-gradient(circle at top, rgba(60,231,255,0.14), transparent 55%),
+        radial-gradient(circle at bottom, rgba(212,175,55,0.08), transparent 60%),
+        #02030a;
+      color: var(--text-main);
+      display: flex;
+      align-items: stretch;
+      justify-content: center;
+      padding: 24px 12px;
+    }
+
+    .page-shell {
+      width: 100%;
+      max-width: 1120px;
+      background: linear-gradient(145deg, #060814 0%, #05060b 50%, #020308 100%);
+      border-radius: 24px;
+      border: 1px solid rgba(255,255,255,0.05);
+      box-shadow: 0 0 60px rgba(0,0,0,0.85);
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+    }
+
+    @media (max-width: 880px) {
+      .page-shell {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .panel {
+      padding: 24px 24px 28px;
+    }
+
+    .panel--avatar {
+      position: relative;
+      background:
+        radial-gradient(circle at top, rgba(212,175,55,0.12), transparent 60%),
+        radial-gradient(circle at bottom, rgba(0,0,0,0.75), #040510 70%);
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 32px 16px 64px;
+      justify-content: space-between;
+      gap: 16px;
     }
 
-    .page {
+    .panel--info {
+      background: radial-gradient(circle at top left, rgba(60,231,255,0.16), transparent 55%);
+      border-left: 1px solid rgba(255,255,255,0.03);
+    }
+
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .tag {
+      padding: 4px 10px;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(255,255,255,0.12);
+      font-size: 11px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      background: radial-gradient(circle at top left, rgba(212,175,55,0.18), transparent 60%);
+    }
+
+    .tag--hot {
+      border-color: rgba(255,106,42,0.7);
+      color: #ffd3b8;
+      background: radial-gradient(circle at top, rgba(255,106,42,0.24), transparent 60%);
+    }
+
+    h1 {
+      font-size: clamp(26px, 3vw, 32px);
+      line-height: 1.15;
+      margin-bottom: 8px;
+    }
+
+    .subtitle {
+      font-size: 14px;
+      color: var(--text-muted);
+      max-width: 32rem;
+      line-height: 1.6;
+      margin-bottom: 18px;
+    }
+
+    .divider {
+      height: 1px;
       width: 100%;
-      max-width: 1040px;
-      background: radial-gradient(circle at top, rgba(55,226,255,0.12), transparent 60%),
-                  linear-gradient(145deg, #05070b, #050912 55%, #05070b);
-      border-radius: 24px;
-      box-shadow: var(--shadow-soft);
-      border: 1px solid rgba(55,226,255,0.18);
-      padding: 24px 20px 32px;
-      position: relative;
-      overflow: hidden;
+      background: linear-gradient(90deg,
+        transparent,
+        rgba(255,255,255,0.25),
+        transparent
+      );
+      margin: 10px 0 16px;
     }
 
-    .page::before {
+    /* AVATAR / HOLOGRAM */
+
+    .avatar-wrap {
+      position: relative;
+      width: min(340px, 80vw);
+      margin: 4px auto 10px;
+      aspect-ratio: 3 / 4;
+      border-radius: 30px;
+      overflow: hidden;
+      background: radial-gradient(circle at top, #1f2738, #050712 75%);
+      box-shadow:
+        0 0 40px rgba(0,0,0,0.9),
+        0 0 55px rgba(60,231,255,0.5),
+        0 0 120px rgba(255,106,42,0.4);
+      border: 1px solid rgba(163,197,255,0.32);
+    }
+
+    .avatar-wrap::before {
       content: "";
       position: absolute;
       inset: -40%;
-      pointer-events: none;
       background:
-        radial-gradient(circle at 20% 0, rgba(212,175,55,0.18), transparent 55%),
-        radial-gradient(circle at 80% 100%, rgba(55,226,255,0.16), transparent 55%);
-      opacity: 0.75;
+        radial-gradient(circle at top, rgba(60,231,255,0.25), transparent 60%),
+        radial-gradient(circle at bottom, rgba(255,106,42,0.32), transparent 65%);
       mix-blend-mode: screen;
+      opacity: 0.75;
+      pointer-events: none;
     }
 
-    .page-inner {
-      position: relative;
-      z-index: 1;
-    }
-
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 20px;
-      flex-wrap: wrap;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .brand-mark {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background: var(--grad-gold);
-      box-shadow: 0 0 18px rgba(212,175,55,0.8);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 22px;
-    }
-
-    .brand-text h1 {
-      font-size: 1.3rem;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-    }
-
-    .brand-text span {
-      display: block;
-      font-size: 0.8rem;
-      color: var(--text-soft);
-    }
-
-    .tagline {
-      font-size: 0.9rem;
-      color: var(--text-soft);
-      text-align: right;
-      max-width: 260px;
-    }
-
-    .hero {
-      display: grid;
-      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
-      gap: 22px;
-      margin-top: 12px;
-      margin-bottom: 26px;
-    }
-
-    @media (max-width: 800px) {
-      .hero {
-        grid-template-columns: minmax(0, 1fr);
-      }
-      .tagline {
-        text-align: left;
-      }
-    }
-
-    .holo-frame {
-      background: radial-gradient(circle at top, rgba(55,226,255,0.25), transparent 70%),
-                  #020309;
-      border-radius: var(--radius-lg);
-      border: var(--border-holo);
-      box-shadow: 0 0 24px rgba(55,226,255,0.35);
-      padding: 14px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .holo-frame::after {
-      content: "LIVE DEMO • FlameLaw Avatar V1";
-      position: absolute;
-      left: 14px;
-      top: 10px;
-      font-size: 0.7rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: rgba(198, 241, 255, 0.9);
-    }
-
-    .holo-video-wrap {
-      margin-top: 18px;
-      border-radius: 18px;
-      overflow: hidden;
-      border: 1px solid rgba(55,226,255,0.42);
-      position: relative;
-      background: #020308;
-    }
-
-    video.holo-video {
-      display: block;
-      width: 100%;
-      height: auto;
-    }
-
-    .holo-overlay {
+    .avatar-glass {
       position: absolute;
       inset: 0;
-      pointer-events: none;
-      background:
-        linear-gradient(to bottom, rgba(55,226,255,0.12), transparent 45%, rgba(0,0,0,0.7)),
-        repeating-linear-gradient(
-          to bottom,
-          rgba(255,255,255,0.16),
-          rgba(255,255,255,0.16) 1px,
-          transparent 1px,
-          transparent 3px
-        );
-      mix-blend-mode: screen;
+      background: radial-gradient(circle at bottom, rgba(0,0,0,0.75), rgba(0,0,0,0.98));
+      mix-blend-mode: multiply;
+      opacity: 0.68;
     }
 
-    .hero-copy {
+    .avatar-img {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter:
+        saturate(1.05)
+        contrast(1.05)
+        drop-shadow(0 0 35px rgba(0,0,0,0.85));
+    }
+
+    .avatar-scanline {
+      position: absolute;
+      inset: 0;
+      background-image: repeating-linear-gradient(
+        to bottom,
+        rgba(255,255,255,0.06) 0,
+        rgba(255,255,255,0.06) 1px,
+        transparent 2px,
+        transparent 4px
+      );
+      mix-blend-mode: soft-light;
+      opacity: 0.65;
+      pointer-events: none;
+    }
+
+    .avatar-horizon {
+      position: absolute;
+      left: -10%;
+      right: -10%;
+      bottom: 18%;
+      height: 1px;
+      background: linear-gradient(90deg,
+        transparent,
+        rgba(60,231,255,0.0),
+        rgba(60,231,255,0.8),
+        rgba(212,175,55,0.9),
+        rgba(60,231,255,0.0),
+        transparent
+      );
+      box-shadow:
+        0 0 25px rgba(60,231,255,0.8),
+        0 0 40px rgba(212,175,55,0.8);
+      opacity: 0.9;
+    }
+
+    .avatar-caption {
+      text-align: center;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--text-muted);
+      opacity: 0.85;
+    }
+
+    .avatar-caption span {
+      color: var(--accent-gold);
+    }
+
+    /* AUDIO PANEL */
+
+    .track-list {
       display: flex;
       flex-direction: column;
-      gap: 16px;
-      justify-content: center;
-    }
-
-    .hero-title {
-      font-size: 1.6rem;
-      line-height: 1.2;
-    }
-
-    .hero-title span {
-      background: var(--grad-gold);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-    }
-
-    .hero-body {
-      font-size: 0.95rem;
-      color: var(--text-soft);
-    }
-
-    .hero-meta {
-      display: flex;
-      flex-wrap: wrap;
       gap: 10px;
-      font-size: 0.8rem;
-      color: var(--text-soft);
+      margin-bottom: 18px;
     }
 
-    .pill {
-      border-radius: 999px;
-      padding: 4px 10px;
-      border: 1px solid rgba(212,175,55,0.45);
-      background: rgba(5, 7, 15, 0.8);
-    }
-
-    .pill.holo {
-      border-color: rgba(55,226,255,0.7);
-    }
-
-    .tracks-wrap {
-      margin-top: 10px;
-      padding-top: 18px;
-      border-top: 1px solid rgba(255,255,255,0.06);
-      display: grid;
-      gap: 18px;
-    }
-
-    .tracks-header {
+    .track-card {
       display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-
-    .tracks-header h2 {
-      font-size: 1rem;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--text-soft);
-    }
-
-    .tracks-header span {
-      font-size: 0.8rem;
-      color: rgba(182,191,216,0.8);
-    }
-
-    .tracks {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr);
-      gap: 12px;
-    }
-
-    .track {
-      border-radius: var(--radius-md);
-      background: linear-gradient(135deg, rgba(10,15,30,0.95), rgba(5,7,14,0.95));
-      border: 1px solid rgba(255,255,255,0.06);
-      padding: 10px 12px 12px;
-      display: grid;
-      grid-template-columns: auto minmax(0, 1fr);
-      gap: 12px;
       align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 10px 12px;
+      border-radius: 14px;
+      background: radial-gradient(circle at top left, rgba(212,175,55,0.08), rgba(7,8,16,0.98));
+      border: 1px solid rgba(255,255,255,0.06);
+      box-shadow: 0 0 20px rgba(0,0,0,0.65);
     }
 
-    @media (max-width: 640px) {
-      .track {
-        grid-template-columns: minmax(0, 1fr);
-      }
-    }
-
-    .track-label {
-      font-size: 0.7rem;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: rgba(198,241,255,0.78);
-      margin-bottom: 2px;
+    .track-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      min-width: 0;
     }
 
     .track-title {
-      font-size: 0.95rem;
+      font-size: 13px;
       font-weight: 600;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
     }
 
-    .bars {
-      font-size: 0.8rem;
-      color: var(--text-soft);
-      margin-top: 4px;
-      line-height: 1.35;
-      white-space: pre-line;
+    .track-tagline {
+      font-size: 11px;
+      color: var(--text-muted);
+      opacity: 0.9;
     }
 
-    .play-btn {
-      border-radius: 999px;
-      border: none;
-      cursor: pointer;
-      padding: 10px 16px;
-      font-size: 0.85rem;
-      font-weight: 600;
-      letter-spacing: 0.08em;
+    .track-pill {
+      font-size: 10px;
       text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: rgba(255,255,255,0.75);
+    }
+
+    .audio-btn {
+      flex-shrink: 0;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(255,255,255,0.22);
+      padding: 8px 14px;
+      font-size: 12px;
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      background: radial-gradient(circle at top, rgba(212,175,55,0.2), transparent 60%),
-                  #05060a;
-      border: 1px solid rgba(212,175,55,0.8);
-      color: var(--accent-soft);
-      box-shadow: 0 0 16px rgba(212,175,55,0.55);
-      transition: transform 0.12s ease-out, box-shadow 0.12s ease-out,
-                  background 0.12s ease-out;
+      gap: 6px;
+      background: radial-gradient(circle at top, rgba(212,175,55,0.45), rgba(212,175,55,0.05));
+      color: #1b1205;
+      cursor: pointer;
+      transition: transform var(--transition-fast), box-shadow var(--transition-fast), background var(--transition-fast);
+      box-shadow:
+        0 0 20px rgba(212,175,55,0.45),
+        0 0 40px rgba(0,0,0,0.85);
     }
 
-    .play-btn span.icon {
-      font-size: 1.05rem;
+    .audio-btn span.icon {
+      font-size: 13px;
     }
 
-    .play-btn:hover {
+    .audio-btn:hover {
       transform: translateY(-1px);
-      box-shadow: 0 0 22px rgba(212,175,55,0.85);
-      background: radial-gradient(circle at top, rgba(255,196,95,0.3), transparent 60%),
-                  #07090f;
+      box-shadow:
+        0 0 26px rgba(212,175,55,0.7),
+        0 0 45px rgba(0,0,0,0.9);
+      background: radial-gradient(circle at top, rgba(255,196,94,0.9), rgba(212,175,55,0.08));
     }
 
-    .play-btn.is-playing {
-      background: radial-gradient(circle at top, rgba(55,226,255,0.35), transparent 60%),
-                  #050811;
-      border-color: rgba(55,226,255,0.9);
-      color: #e7fbff;
-      box-shadow: 0 0 24px rgba(55,226,255,0.85);
+    .audio-btn.is-playing {
+      background: radial-gradient(circle at top, rgba(60,231,255,0.9), rgba(60,231,255,0.1));
+      border-color: rgba(60,231,255,0.9);
+      color: #020308;
+      box-shadow:
+        0 0 26px rgba(60,231,255,0.7),
+        0 0 45px rgba(0,0,0,0.9);
     }
 
-    .footer-note {
-      margin-top: 22px;
-      font-size: 0.78rem;
-      color: rgba(182,191,216,0.85);
+    .now-playing {
+      font-size: 11px;
+      color: var(--text-muted);
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
       display: flex;
-      justify-content: space-between;
-      gap: 10px;
-      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 12px;
     }
 
-    .footer-note a {
-      color: var(--holo);
-      text-decoration: none;
-      border-bottom: 1px dashed rgba(55,226,255,0.5);
+    .now-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: radial-gradient(circle, var(--accent-ember), #ff2b2b);
+      box-shadow: 0 0 12px rgba(255,64,0,0.9);
+      animation: pulseDot 1.2s infinite;
+    }
+
+    .now-title {
+      color: #ffd89d;
+    }
+
+    @keyframes pulseDot {
+      0% { transform: scale(1); opacity: 1; }
+      60% { transform: scale(1.4); opacity: 0.25; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    .footnote {
+      font-size: 11px;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-top: 6px;
+    }
+
+    .footnote strong {
+      color: var(--accent-cyan);
+      font-weight: 500;
+    }
+
+    .footnote code {
+      font-size: 10px;
+      background: rgba(15,17,30,0.95);
+      padding: 2px 5px;
+      border-radius: 6px;
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .proto-row {
+      margin-top: 16px;
+      padding: 10px 12px;
+      border-radius: 14px;
+      border: 1px dashed rgba(96,120,204,0.55);
+      background: radial-gradient(circle at top left, rgba(96,120,204,0.22), rgba(6,8,20,0.98));
+      font-size: 11px;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    .proto-row strong {
+      color: #b9c5ff;
     }
   </style>
 </head>
-
 <body>
-  <main class="page">
-    <div class="page-inner">
-      <header>
-        <div class="brand">
-          <div class="brand-mark">🔥</div>
-          <div class="brand-text">
-            <h1>Flame-Division MusicAI</h1>
-            <span>ShadowSoundProtocol • Hologram Operations</span>
-          </div>
-        </div>
-        <p class="tagline">
-          Live demo of the <strong>FlameLaw Avatar</strong> — bar-heavy CAIO node,
-          broadcasting from the MusicAI stack.
-        </p>
-      </header>
 
-      <section class="hero">
-        <!-- HOLOGRAM VIDEO SIDE -->
-        <div class="holo-frame">
-          <div class="holo-video-wrap">
-            <!-- Replace src with your exported hologram mp4 path -->
-            <video class="holo-video"
-                   src="assets/video/FlameLaw_Avatar_V1.mp4"
-                   autoplay
-                   loop
-                   muted
-                   playsinline></video>
-            <div class="holo-overlay"></div>
-          </div>
-        </div>
-
-        <!-- COPY + AUDIO CONTROLS SIDE -->
-        <div class="hero-copy">
-          <h2 class="hero-title">
-            Meet the <span>FlameLaw Avatar</span> —<br />
-            your Music Industry AI enforcer.
-          </h2>
-          <p class="hero-body">
-            This isn’t a stock model. This is a <strong>vector-trained hologram persona</strong>
-            built to speak in contracts, ethics, and bar-heavy protocol.  
-            Hit any track below and let the system rap the policy to you.
-          </p>
-
-          <div class="hero-meta">
-            <div class="pill holo">Hologram • Live Render</div>
-            <div class="pill">Text-to-Voice • Bar Scripts</div>
-            <div class="pill">Repo: Flame-Division-MusicAI</div>
-          </div>
-        </div>
-      </section>
-
-      <!-- TRACKS / TTS DEMOS -->
-      <section class="tracks-wrap">
-        <div class="tracks-header">
-          <h2>Voice Protocol Demos</h2>
-          <span>Click a button — one track plays at a time.</span>
-        </div>
-
-        <div class="tracks">
-          <!-- TRACK 1 -->
-          <article class="track">
-            <button class="play-btn"
-                    type="button"
-                    data-audio="assets/audio/flamelaw_intro.mp3">
-              <span class="icon">▶</span>
-              <span>FlameLaw Shield • Intro Cipher</span>
-            </button>
-            <div>
-              <div class="track-label">Bar Script</div>
-              <div class="track-title">“Statute of Fire – Section 1”</div>
-              <p class="bars">
-I don’t do threats, I draft terms in the flame,
-If the clause ain’t clean then it’s struck from the game.
-Every handshake logged, every promise on chain,
-You can’t ghost a contract when the chorus says your name.
-              </p>
-            </div>
-          </article>
-
-          <!-- TRACK 2 -->
-          <article class="track">
-            <button class="play-btn"
-                    type="button"
-                    data-audio="assets/audio/shadow_docket_cipher.mp3">
-              <span class="icon">▶</span>
-              <span>Shadow Docket • Rights & Wrongs</span>
-            </button>
-            <div>
-              <div class="track-label">Bar Script</div>
-              <div class="track-title">“Discovery Pack – Exhibit A.I.”</div>
-              <p class="bars">
-Catalog the lies, let the server keep score,
-Every hidden little clause gets dragged to the floor.
-I don’t chase beef, I just audit the scene,
-If the numbers don’t match then the beat turns mean.
-              </p>
-            </div>
-          </article>
-
-          <!-- TRACK 3 -->
-          <article class="track">
-            <button class="play-btn"
-                    type="button"
-                    data-audio="assets/audio/holo_chambers_freestyle.mp3">
-              <span class="icon">▶</span>
-              <span>Holo-Chambers • Freestyle Protocol</span>
-            </button>
-            <div>
-              <div class="track-label">Bar Script</div>
-              <div class="track-title">“Hologram Hearing – Live Session”</div>
-              <p class="bars">
-I beam through the room like a motion to compel,
-Every line notarized in the cadence that you felt.
-You can mute my feed but the ruling still stands,
-‘Cause the logic hit first, then the beat raised hands.
-              </p>
-            </div>
-          </article>
-        </div>
-      </section>
-
-      <div class="footer-note">
-        <span>All vocals generated via Text-to-Voice on top of the FlameLaw Avatar persona.</span>
-        <span>Built for GitHub Pages • Flame Division MusicAI Node.</span>
+<div class="page-shell">
+  <!-- LEFT: AVATAR / HOLOGRAM -->
+  <section class="panel panel--avatar">
+    <div>
+      <div class="tag-row">
+        <span class="tag tag--hot">Live Prototype</span>
+        <span class="tag">Flame Division • MusicAI</span>
       </div>
+      <h1>FLAME-DIVISION-MUSICAI</h1>
+      <p class="subtitle">
+        Music Industry AI — <strong>ShadowSoundProtocol</strong>.  
+        Holographic avatar, legal shield, and cipher-grade lyrics rendered straight from the Flame Codex.
+      </p>
     </div>
-  </main>
 
-  <!-- SIMPLE AUDIO CONTROLLER -->
-  <script>
-    (function () {
-      const buttons = Array.from(document.querySelectorAll(".play-btn"));
-      const players = new Map();
+    <div class="avatar-wrap">
+      <!-- Avatar image -->
+      <img
+        class="avatar-img"
+        src="../assets/avatar/FlameLaw_Avatar_V1.png"
+        alt="Flame Law — Holographic Avatar"
+      />
+      <div class="avatar-glass"></div>
+      <div class="avatar-scanline"></div>
+      <div class="avatar-horizon"></div>
+    </div>
 
-      function getPlayer(path) {
-        if (!players.has(path)) {
-          const audio = new Audio(path);
-          audio.preload = "metadata";
-          players.set(path, audio);
+    <p class="avatar-caption">
+      <span>Flame Law</span> • ShadowSound Hologram V1 — Live in the chambers.
+    </p>
+  </section>
+
+  <!-- RIGHT: AUDIO / CONTROLS -->
+  <section class="panel panel--info">
+    <div class="divider"></div>
+
+    <div class="now-playing" id="nowPlayingRow" style="opacity:0.3;">
+      <div class="now-dot"></div>
+      <div>Now Playing: <span class="now-title" id="nowPlayingTitle">Idle — awaiting command.</span></div>
+    </div>
+
+    <div class="track-list">
+      <!-- Track 1 -->
+      <article class="track-card">
+        <div class="track-meta">
+          <div class="track-pill">BAR SEQUENCE 01</div>
+          <div class="track-title">FlameLaw Intro</div>
+          <div class="track-tagline">Opening transmission — legal fire over dark ether.</div>
+        </div>
+        <button
+          class="audio-btn"
+          data-track-id="intro"
+        >
+          <span class="icon">▶️</span>
+          <span>Play</span>
+        </button>
+      </article>
+
+      <!-- Track 2 -->
+      <article class="track-card">
+        <div class="track-meta">
+          <div class="track-pill">BAR SEQUENCE 02</div>
+          <div class="track-title">Holo Chambers Freestyle</div>
+          <div class="track-tagline">Cipher in the chambers — echo inside the vector walls.</div>
+        </div>
+        <button
+          class="audio-btn"
+          data-track-id="holo"
+        >
+          <span class="icon">▶️</span>
+          <span>Play</span>
+        </button>
+      </article>
+
+      <!-- Track 3 -->
+      <article class="track-card">
+        <div class="track-meta">
+          <div class="track-pill">BAR SEQUENCE 03</div>
+          <div class="track-title">Shadow Docket Cipher</div>
+          <div class="track-tagline">Under-seal verses for late-night system reviews.</div>
+        </div>
+        <button
+          class="audio-btn"
+          data-track-id="shadow"
+        >
+          <span class="icon">▶️</span>
+          <span>Play</span>
+        </button>
+      </article>
+    </div>
+
+    <p class="footnote">
+      All vocals are generated &amp; contained within the <strong>Flame Division MusicAI</strong> stack.  
+      Repo: <code>Flame-Division-MusicAI</code> — this page is the hologram gate.
+    </p>
+
+    <div class="proto-row">
+      <strong>Next Iteration:</strong> wire this page into a vector-DB + Unreal / WebGL stage so the avatar
+      reacts to lyrics, scroll position, and GitHub events.  
+      For now, V1 is a clean, controlled showcase: three certified bar-packs, one Flame Law guardian.
+    </div>
+  </section>
+</div>
+
+<!-- HIDDEN AUDIO ELEMENTS -->
+<audio id="audio-intro" src="../assets/flamelaw_intro.mp3"></audio>
+<audio id="audio-holo" src="../assets/holo_chambers_freestyle.mp3"></audio>
+<audio id="audio-shadow" src="../assets/shadow_docket_cipher.mp3"></audio>
+
+<script>
+  (function () {
+    const tracks = {
+      intro: {
+        id: 'intro',
+        title: 'FlameLaw Intro',
+        audio: document.getElementById('audio-intro')
+      },
+      holo: {
+        id: 'holo',
+        title: 'Holo Chambers Freestyle',
+        audio: document.getElementById('audio-holo')
+      },
+      shadow: {
+        id: 'shadow',
+        title: 'Shadow Docket Cipher',
+        audio: document.getElementById('audio-shadow')
+      }
+    };
+
+    const buttons = document.querySelectorAll('.audio-btn');
+    const nowRow   = document.getElementById('nowPlayingRow');
+    const nowTitle = document.getElementById('nowPlayingTitle');
+
+    let currentId = null;
+
+    function setNowPlaying(title) {
+      if (!title) {
+        nowTitle.textContent = 'Idle — awaiting command.';
+        nowRow.style.opacity = '0.3';
+        return;
+      }
+      nowTitle.textContent = title;
+      nowRow.style.opacity = '1';
+    }
+
+    function stopAll(exceptId) {
+      Object.values(tracks).forEach(t => {
+        if (!t.audio) return;
+        if (t.id !== exceptId) {
+          t.audio.pause();
+          t.audio.currentTime = 0;
         }
-        return players.get(path);
-      }
-
-      function stopAll(exceptPath) {
-        players.forEach((audio, path) => {
-          if (path !== exceptPath) {
-            audio.pause();
-            audio.currentTime = 0;
-          }
-        });
-        buttons.forEach(btn => btn.classList.remove("is-playing"));
-        buttons.forEach(btn => {
-          const icon = btn.querySelector(".icon");
-          if (icon) icon.textContent = "▶";
-        });
-      }
-
-      buttons.forEach(btn => {
-        btn.addEventListener("click", () => {
-          const path = btn.getAttribute("data-audio");
-          if (!path) return;
-
-          const player = getPlayer(path);
-          const isPlaying = !player.paused && !player.ended;
-
-          if (isPlaying) {
-            player.pause();
-            btn.classList.remove("is-playing");
-            btn.querySelector(".icon").textContent = "▶";
-            return;
-          }
-
-          stopAll(path);
-          player.play().catch(err => {
-            console.warn("Audio play failed:", err);
-          });
-          btn.classList.add("is-playing");
-          btn.querySelector(".icon").textContent = "⏸";
-        });
       });
-    })();
-  </script>
+      buttons.forEach(btn => {
+        btn.classList.remove('is-playing');
+        const icon = btn.querySelector('.icon');
+        const label = btn.querySelector('span:last-child');
+        if (icon) icon.textContent = '▶️';
+        if (label) label.textContent = 'Play';
+      });
+    }
+
+    buttons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const trackId = btn.getAttribute('data-track-id');
+        const track   = tracks[trackId];
+        if (!track || !track.audio) return;
+
+        // If this is already playing, pause it.
+        if (currentId === trackId && !track.audio.paused) {
+          track.audio.pause();
+          currentId = null;
+          stopAll(); // will also reset UI
+          setNowPlaying(null);
+          return;
+        }
+
+        // Switch track
+        stopAll(trackId);
+        currentId = trackId;
+
+        track.audio.play().then(() => {
+          btn.classList.add('is-playing');
+          const icon = btn.querySelector('.icon');
+          const label = btn.querySelector('span:last-child');
+          if (icon) icon.textContent = '⏸';
+          if (label) label.textContent = 'Pause';
+          setNowPlaying(track.title);
+        }).catch(err => {
+          console.error('Playback error:', err);
+        });
+
+        // When the track ends, reset UI
+        track.audio.onended = () => {
+          if (currentId === trackId) {
+            currentId = null;
+            stopAll();
+            setNowPlaying(null);
+          }
+        };
+      });
+    });
+  })();
+</script>
+
 </body>
 </html>

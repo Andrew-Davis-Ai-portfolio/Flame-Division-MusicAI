@@ -596,75 +596,102 @@
     </main>
   </div>
 
-  <script>
-    // HOLOGRAM VIDEO CONTROL
-    (function () {
-      const video = document.getElementById("flameVideo");
-      const btn = document.getElementById("videoControlBtn");
+ <script>
+  (function () {
+    console.log("[FDM] script loaded");
 
-      if (!video || !btn) return;
+    const video = document.getElementById("flameVideo");
+    const videoBtn = document.getElementById("videoControlBtn");
+    const audioButtons = Array.from(document.querySelectorAll(".audio-btn"));
+    const audioTracks = [];
 
-      btn.addEventListener("click", function () {
+    // Collect all audio elements + buttons
+    audioButtons.forEach((btn) => {
+      const id = btn.dataset.audioId;
+      const audio = document.getElementById(id);
+      if (!audio) {
+        console.log("[FDM] missing audio element for", id);
+        return;
+      }
+      audioTracks.push({ btn, audio });
+    });
+
+    function stopAllAudio() {
+      audioTracks.forEach(({ btn, audio }) => {
+        audio.pause();
+        audio.currentTime = 0;
+        btn.dataset.state = "idle";
+        btn.textContent = "▶︎ PLAY";
+      });
+    }
+
+    function stopVideo() {
+      if (!video || !videoBtn) return;
+      video.pause();
+      videoBtn.textContent = "▶︎ PLAY HOLOGRAM";
+    }
+
+    // VIDEO CONTROL
+    if (video && videoBtn) {
+      videoBtn.addEventListener("click", function () {
+        console.log("[FDM] video button clicked");
+        stopAllAudio();
+
         if (video.paused) {
-          // Pause all other audio when video starts
-          pauseAllAudio();
-          video.play().catch(() => {});
-          btn.textContent = "⏸ PAUSE HOLOGRAM";
+          video
+            .play()
+            .then(() => {
+              videoBtn.textContent = "⏸ PAUSE HOLOGRAM";
+            })
+            .catch((err) => {
+              console.log("[FDM] video play error:", err);
+              alert("Browser blocked video autoplay. Try tapping the video directly.");
+            });
         } else {
-          video.pause();
-          btn.textContent = "▶︎ PLAY HOLOGRAM";
+          stopVideo();
         }
       });
 
       video.addEventListener("ended", function () {
-        btn.textContent = "▶︎ PLAY HOLOGRAM";
+        videoBtn.textContent = "▶︎ PLAY HOLOGRAM";
       });
-    })();
+    }
 
-    // AUDIO CONTROLS (ONE AT A TIME)
-    (function () {
-      const buttons = Array.from(document.querySelectorAll(".audio-btn"));
-      const audioEls = buttons.map((btn) =>
-        document.getElementById(btn.dataset.audioId)
-      );
+    // AUDIO CONTROL
+    audioTracks.forEach(({ btn, audio }) => {
+      btn.addEventListener("click", function () {
+        console.log("[FDM] audio button clicked:", btn.dataset.audioId);
 
-      window.pauseAllAudio = function () {
-        audioEls.forEach((audio, index) => {
-          if (!audio) return;
-          audio.pause();
-          audio.currentTime = 0;
-          const btn = buttons[index];
-          if (btn) {
-            btn.dataset.state = "idle";
-            btn.textContent = "▶︎ PLAY";
-          }
-        });
-      };
+        // Stop hologram video when any track plays
+        stopVideo();
 
-      buttons.forEach((btn) => {
-        const audioId = btn.dataset.audioId;
-        const audio = document.getElementById(audioId);
-        if (!audio) return;
+        const isPlaying = btn.dataset.state === "playing";
 
-        btn.addEventListener("click", function () {
-          const isPlaying = btn.dataset.state === "playing";
+        // Stop everything first
+        stopAllAudio();
 
-          // Always stop everything else first
-          pauseAllAudio();
-
-          if (!isPlaying) {
-            audio.play().catch(() => {});
-            btn.dataset.state = "playing";
-            btn.textContent = "⏸ PAUSE";
-          }
-        });
-
-        audio.addEventListener("ended", function () {
-          btn.dataset.state = "idle";
-          btn.textContent = "▶︎ PLAY";
-        });
+        if (!isPlaying) {
+          audio
+            .play()
+            .then(() => {
+              btn.dataset.state = "playing";
+              btn.textContent = "⏸ PAUSE";
+            })
+            .catch((err) => {
+              console.log("[FDM] audio play error:", err);
+              alert("Browser blocked audio playback. Try tapping again.");
+            });
+        }
       });
-    })();
-  </script>
+
+      audio.addEventListener("ended", function () {
+        btn.dataset.state = "idle";
+        btn.textContent = "▶︎ PLAY";
+      });
+    });
+
+    console.log("[FDM] init complete. Tracks:", audioTracks.length);
+  })();
+</script>
 </body>
 </html>

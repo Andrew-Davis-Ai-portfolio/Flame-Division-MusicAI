@@ -1,0 +1,551 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>🔥 Flame Division MusicAI — FlameLaw Avatar</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="Flame Division MusicAI — holographic CAIO avatar spitting bar-heavy protocol over the Music Industry AI stack." />
+
+  <style>
+    :root {
+      --bg: #05070b;
+      --bg-alt: #0b0f18;
+      --accent: #d4af37;     /* ember gold */
+      --accent-soft: #f6d269;
+      --holo: #37e2ff;       /* cyan hologram */
+      --text-main: #f5f7fb;
+      --text-soft: #b6bfd8;
+      --danger: #ff4b4b;
+      --radius-lg: 18px;
+      --radius-md: 12px;
+      --shadow-soft: 0 18px 45px rgba(0, 0, 0, 0.65);
+      --grad-holo: radial-gradient(circle at top, rgba(55,226,255,0.55), transparent 55%);
+      --grad-gold: linear-gradient(135deg, #d4af37, #ff7c2a);
+      --border-holo: 1px solid rgba(55,226,255,0.45);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+        "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at top, rgba(212,175,55,0.12), transparent 55%),
+        radial-gradient(circle at bottom, rgba(55,226,255,0.12), transparent 55%),
+        #020308;
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 32px 16px 64px;
+    }
+
+    .page {
+      width: 100%;
+      max-width: 1040px;
+      background: radial-gradient(circle at top, rgba(55,226,255,0.12), transparent 60%),
+                  linear-gradient(145deg, #05070b, #050912 55%, #05070b);
+      border-radius: 24px;
+      box-shadow: var(--shadow-soft);
+      border: 1px solid rgba(55,226,255,0.18);
+      padding: 24px 20px 32px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .page::before {
+      content: "";
+      position: absolute;
+      inset: -40%;
+      pointer-events: none;
+      background:
+        radial-gradient(circle at 20% 0, rgba(212,175,55,0.18), transparent 55%),
+        radial-gradient(circle at 80% 100%, rgba(55,226,255,0.16), transparent 55%);
+      opacity: 0.75;
+      mix-blend-mode: screen;
+    }
+
+    .page-inner {
+      position: relative;
+      z-index: 1;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-mark {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--grad-gold);
+      box-shadow: 0 0 18px rgba(212,175,55,0.8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+    }
+
+    .brand-text h1 {
+      font-size: 1.3rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .brand-text span {
+      display: block;
+      font-size: 0.8rem;
+      color: var(--text-soft);
+    }
+
+    .tagline {
+      font-size: 0.9rem;
+      color: var(--text-soft);
+      text-align: right;
+      max-width: 260px;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+      gap: 22px;
+      margin-top: 12px;
+      margin-bottom: 26px;
+    }
+
+    @media (max-width: 800px) {
+      .hero {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .tagline {
+        text-align: left;
+      }
+    }
+
+    .holo-frame {
+      background: radial-gradient(circle at top, rgba(55,226,255,0.25), transparent 70%),
+                  #020309;
+      border-radius: var(--radius-lg);
+      border: var(--border-holo);
+      box-shadow: 0 0 24px rgba(55,226,255,0.35);
+      padding: 14px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .holo-frame::after {
+      content: "LIVE DEMO • FlameLaw Avatar V1";
+      position: absolute;
+      left: 14px;
+      top: 10px;
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(198, 241, 255, 0.9);
+    }
+
+    .holo-video-wrap {
+      margin-top: 18px;
+      border-radius: 18px;
+      overflow: hidden;
+      border: 1px solid rgba(55,226,255,0.42);
+      position: relative;
+      background: #020308;
+    }
+
+    video.holo-video {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .holo-overlay {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background:
+        linear-gradient(to bottom, rgba(55,226,255,0.12), transparent 45%, rgba(0,0,0,0.7)),
+        repeating-linear-gradient(
+          to bottom,
+          rgba(255,255,255,0.16),
+          rgba(255,255,255,0.16) 1px,
+          transparent 1px,
+          transparent 3px
+        );
+      mix-blend-mode: screen;
+    }
+
+    .hero-copy {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      justify-content: center;
+    }
+
+    .hero-title {
+      font-size: 1.6rem;
+      line-height: 1.2;
+    }
+
+    .hero-title span {
+      background: var(--grad-gold);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero-body {
+      font-size: 0.95rem;
+      color: var(--text-soft);
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      font-size: 0.8rem;
+      color: var(--text-soft);
+    }
+
+    .pill {
+      border-radius: 999px;
+      padding: 4px 10px;
+      border: 1px solid rgba(212,175,55,0.45);
+      background: rgba(5, 7, 15, 0.8);
+    }
+
+    .pill.holo {
+      border-color: rgba(55,226,255,0.7);
+    }
+
+    .tracks-wrap {
+      margin-top: 10px;
+      padding-top: 18px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      display: grid;
+      gap: 18px;
+    }
+
+    .tracks-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .tracks-header h2 {
+      font-size: 1rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-soft);
+    }
+
+    .tracks-header span {
+      font-size: 0.8rem;
+      color: rgba(182,191,216,0.8);
+    }
+
+    .tracks {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 12px;
+    }
+
+    .track {
+      border-radius: var(--radius-md);
+      background: linear-gradient(135deg, rgba(10,15,30,0.95), rgba(5,7,14,0.95));
+      border: 1px solid rgba(255,255,255,0.06);
+      padding: 10px 12px 12px;
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr);
+      gap: 12px;
+      align-items: center;
+    }
+
+    @media (max-width: 640px) {
+      .track {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .track-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(198,241,255,0.78);
+      margin-bottom: 2px;
+    }
+
+    .track-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+
+    .bars {
+      font-size: 0.8rem;
+      color: var(--text-soft);
+      margin-top: 4px;
+      line-height: 1.35;
+      white-space: pre-line;
+    }
+
+    .play-btn {
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      padding: 10px 16px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: radial-gradient(circle at top, rgba(212,175,55,0.2), transparent 60%),
+                  #05060a;
+      border: 1px solid rgba(212,175,55,0.8);
+      color: var(--accent-soft);
+      box-shadow: 0 0 16px rgba(212,175,55,0.55);
+      transition: transform 0.12s ease-out, box-shadow 0.12s ease-out,
+                  background 0.12s ease-out;
+    }
+
+    .play-btn span.icon {
+      font-size: 1.05rem;
+    }
+
+    .play-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 0 22px rgba(212,175,55,0.85);
+      background: radial-gradient(circle at top, rgba(255,196,95,0.3), transparent 60%),
+                  #07090f;
+    }
+
+    .play-btn.is-playing {
+      background: radial-gradient(circle at top, rgba(55,226,255,0.35), transparent 60%),
+                  #050811;
+      border-color: rgba(55,226,255,0.9);
+      color: #e7fbff;
+      box-shadow: 0 0 24px rgba(55,226,255,0.85);
+    }
+
+    .footer-note {
+      margin-top: 22px;
+      font-size: 0.78rem;
+      color: rgba(182,191,216,0.85);
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .footer-note a {
+      color: var(--holo);
+      text-decoration: none;
+      border-bottom: 1px dashed rgba(55,226,255,0.5);
+    }
+  </style>
+</head>
+
+<body>
+  <main class="page">
+    <div class="page-inner">
+      <header>
+        <div class="brand">
+          <div class="brand-mark">🔥</div>
+          <div class="brand-text">
+            <h1>Flame-Division MusicAI</h1>
+            <span>ShadowSoundProtocol • Hologram Operations</span>
+          </div>
+        </div>
+        <p class="tagline">
+          Live demo of the <strong>FlameLaw Avatar</strong> — bar-heavy CAIO node,
+          broadcasting from the MusicAI stack.
+        </p>
+      </header>
+
+      <section class="hero">
+        <!-- HOLOGRAM VIDEO SIDE -->
+        <div class="holo-frame">
+          <div class="holo-video-wrap">
+            <!-- Replace src with your exported hologram mp4 path -->
+            <video class="holo-video"
+                   src="assets/video/FlameLaw_Avatar_V1.mp4"
+                   autoplay
+                   loop
+                   muted
+                   playsinline></video>
+            <div class="holo-overlay"></div>
+          </div>
+        </div>
+
+        <!-- COPY + AUDIO CONTROLS SIDE -->
+        <div class="hero-copy">
+          <h2 class="hero-title">
+            Meet the <span>FlameLaw Avatar</span> —<br />
+            your Music Industry AI enforcer.
+          </h2>
+          <p class="hero-body">
+            This isn’t a stock model. This is a <strong>vector-trained hologram persona</strong>
+            built to speak in contracts, ethics, and bar-heavy protocol.  
+            Hit any track below and let the system rap the policy to you.
+          </p>
+
+          <div class="hero-meta">
+            <div class="pill holo">Hologram • Live Render</div>
+            <div class="pill">Text-to-Voice • Bar Scripts</div>
+            <div class="pill">Repo: Flame-Division-MusicAI</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TRACKS / TTS DEMOS -->
+      <section class="tracks-wrap">
+        <div class="tracks-header">
+          <h2>Voice Protocol Demos</h2>
+          <span>Click a button — one track plays at a time.</span>
+        </div>
+
+        <div class="tracks">
+          <!-- TRACK 1 -->
+          <article class="track">
+            <button class="play-btn"
+                    type="button"
+                    data-audio="assets/audio/flamelaw_intro.mp3">
+              <span class="icon">▶</span>
+              <span>FlameLaw Shield • Intro Cipher</span>
+            </button>
+            <div>
+              <div class="track-label">Bar Script</div>
+              <div class="track-title">“Statute of Fire – Section 1”</div>
+              <p class="bars">
+I don’t do threats, I draft terms in the flame,
+If the clause ain’t clean then it’s struck from the game.
+Every handshake logged, every promise on chain,
+You can’t ghost a contract when the chorus says your name.
+              </p>
+            </div>
+          </article>
+
+          <!-- TRACK 2 -->
+          <article class="track">
+            <button class="play-btn"
+                    type="button"
+                    data-audio="assets/audio/shadow_docket_cipher.mp3">
+              <span class="icon">▶</span>
+              <span>Shadow Docket • Rights & Wrongs</span>
+            </button>
+            <div>
+              <div class="track-label">Bar Script</div>
+              <div class="track-title">“Discovery Pack – Exhibit A.I.”</div>
+              <p class="bars">
+Catalog the lies, let the server keep score,
+Every hidden little clause gets dragged to the floor.
+I don’t chase beef, I just audit the scene,
+If the numbers don’t match then the beat turns mean.
+              </p>
+            </div>
+          </article>
+
+          <!-- TRACK 3 -->
+          <article class="track">
+            <button class="play-btn"
+                    type="button"
+                    data-audio="assets/audio/holo_chambers_freestyle.mp3">
+              <span class="icon">▶</span>
+              <span>Holo-Chambers • Freestyle Protocol</span>
+            </button>
+            <div>
+              <div class="track-label">Bar Script</div>
+              <div class="track-title">“Hologram Hearing – Live Session”</div>
+              <p class="bars">
+I beam through the room like a motion to compel,
+Every line notarized in the cadence that you felt.
+You can mute my feed but the ruling still stands,
+‘Cause the logic hit first, then the beat raised hands.
+              </p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <div class="footer-note">
+        <span>All vocals generated via Text-to-Voice on top of the FlameLaw Avatar persona.</span>
+        <span>Built for GitHub Pages • Flame Division MusicAI Node.</span>
+      </div>
+    </div>
+  </main>
+
+  <!-- SIMPLE AUDIO CONTROLLER -->
+  <script>
+    (function () {
+      const buttons = Array.from(document.querySelectorAll(".play-btn"));
+      const players = new Map();
+
+      function getPlayer(path) {
+        if (!players.has(path)) {
+          const audio = new Audio(path);
+          audio.preload = "metadata";
+          players.set(path, audio);
+        }
+        return players.get(path);
+      }
+
+      function stopAll(exceptPath) {
+        players.forEach((audio, path) => {
+          if (path !== exceptPath) {
+            audio.pause();
+            audio.currentTime = 0;
+          }
+        });
+        buttons.forEach(btn => btn.classList.remove("is-playing"));
+        buttons.forEach(btn => {
+          const icon = btn.querySelector(".icon");
+          if (icon) icon.textContent = "▶";
+        });
+      }
+
+      buttons.forEach(btn => {
+        btn.addEventListener("click", () => {
+          const path = btn.getAttribute("data-audio");
+          if (!path) return;
+
+          const player = getPlayer(path);
+          const isPlaying = !player.paused && !player.ended;
+
+          if (isPlaying) {
+            player.pause();
+            btn.classList.remove("is-playing");
+            btn.querySelector(".icon").textContent = "▶";
+            return;
+          }
+
+          stopAll(path);
+          player.play().catch(err => {
+            console.warn("Audio play failed:", err);
+          });
+          btn.classList.add("is-playing");
+          btn.querySelector(".icon").textContent = "⏸";
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

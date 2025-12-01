@@ -377,7 +377,7 @@
   <audio id="track-holo"  src="../assets/holo_chambers_freestyle.mp3"></audio>
   <audio id="track-shadow" src="../assets/shadow_docket_cipher.mp3"></audio>
 
-  <script>
+    <script>
     // Simple audio controller: one track at a time
     (function () {
       const buttons = document.querySelectorAll(".btn[data-track]");
@@ -387,42 +387,9 @@
         shadow: document.getElementById("track-shadow"),
       };
 
-      function stopAll() {
-        Object.values(tracks).forEach(a => {
-          if (!a) return;
-          a.pause();
-          a.currentTime = 0;
-        });
-        buttons.forEach(btn => {
-          btn.dataset.state = "";
-          btn.textContent = "▶ Play";
-        });
-      }
+      function stopAll() { ... }
 
-      function playTrack(key, button) {
-        const audio = tracks[key];
-        if (!audio) {
-          alert("Audio track not found for key: " + key);
-          return;
-        }
-
-        // If this one is already playing, stop all.
-        if (button.dataset.state === "playing") {
-          stopAll();
-          return;
-        }
-
-        stopAll(); // stop others
-
-        // On iOS/Safari, this click counts as a user gesture so play() is allowed.
-        audio.play().then(() => {
-          button.dataset.state = "playing";
-          button.textContent = "⏸ Stop";
-        }).catch(err => {
-          console.error("Playback blocked or failed:", err);
-          alert("Browser blocked audio playback. Tap again or check volume / mute.");
-        });
-      }
+      function playTrack(key, button) { ... }
 
       buttons.forEach(btn => {
         btn.addEventListener("click", () => {

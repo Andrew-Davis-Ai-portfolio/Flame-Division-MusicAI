@@ -1,11 +1,13 @@
-# 🔥 FLAME-DIVISION-MUSICAI
-### **Music Industry AI — ShadowSoundProtocol**
-
 <p align="center">
-  <img src="./assets/avatar/FlameLaw_Avatar_V1.png" 
-       alt="Flame Division — FlameLaw Avatar V1" 
+  <img src="./assets/avatar/FlameLaw_Avatar_V1.png"
+       alt="Flame Division Avatar V1"
        width="420">
 </p>
+
+<h1 align="center">🔥 Flame Division MusicAI</h1>
+<h3 align="center">Music Industry AI — ShadowSoundProtocol</h3>
+
+---
 
 <h1 align="center">🔥 Flame Division MusicAI</h1>
 <h3 align="center">Where Rhythm Meets Intelligence — Powered by Commander Flame</h3>

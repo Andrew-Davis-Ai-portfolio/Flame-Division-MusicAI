@@ -4,8 +4,8 @@
   <meta charset="utf-8" />
   <title>Flame Division MusicAI — ShadowSoundProtocol</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+
   <style>
-    /* ... all your styles unchanged ... */
     :root {
       --bg: #05070c;
       --bg-alt: #0b1018;
@@ -16,8 +16,239 @@
       --text-soft: #b0b7c9;
       --danger: #ff3366;
     }
-    /* (keep everything between here and audio{} exactly as you have it) */
-    /* ... */
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+                   "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #1b2540 0, #05070c 55%);
+      color: var(--text);
+      min-height: 100vh;
+      padding: 1.5rem;
+      display: flex;
+      justify-content: center;
+    }
+
+    .page {
+      width: 100%;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.25rem 0.9rem;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #221108, #41240f);
+      border: 1px solid rgba(245,181,68,0.45);
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.75rem;
+    }
+
+    .badge span.emoji {
+      font-size: 1rem;
+    }
+
+    h1 {
+      font-size: clamp(1.9rem, 4vw, 2.6rem);
+      line-height: 1.1;
+      margin-bottom: 0.4rem;
+    }
+
+    .subtitle {
+      font-size: 0.98rem;
+      color: var(--text-soft);
+      max-width: 40rem;
+      line-height: 1.4;
+      margin-bottom: 1.5rem;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+      gap: 1.5rem;
+    }
+
+    @media (max-width: 800px) {
+      .layout {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .card {
+      background: radial-gradient(circle at top, rgba(245,181,68,0.12), transparent 55%),
+                  var(--card);
+      border-radius: 1.2rem;
+      border: 1px solid rgba(255,255,255,0.06);
+      box-shadow: 0 22px 50px rgba(0,0,0,0.75);
+      padding: 1.25rem 1.25rem 1.4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: -40%;
+      background:
+        radial-gradient(circle at 10% 0%, rgba(245,181,68,0.13), transparent 50%),
+        radial-gradient(circle at 90% 100%, rgba(99, 210, 255, 0.12), transparent 55%);
+      opacity: 0.7;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .avatar-frame {
+      border-radius: 1rem;
+      overflow: hidden;
+      border: 1px solid rgba(245,181,68,0.5);
+      background: radial-gradient(circle at top, rgba(245,181,68,0.18), #020307);
+    }
+
+    .avatar-frame img,
+    .avatar-frame video {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .avatar-meta {
+      margin-top: 0.8rem;
+      font-size: 0.78rem;
+      color: var(--text-soft);
+    }
+
+    .avatar-meta strong {
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: 0.5rem;
+    }
+
+    .pill {
+      font-size: 0.7rem;
+      border-radius: 999px;
+      padding: 0.16rem 0.6rem;
+      border: 1px solid rgba(245,181,68,0.32);
+      color: var(--accent);
+      background: rgba(0,0,0,0.45);
+    }
+
+    h2 {
+      font-size: 1.12rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 0.85rem;
+    }
+
+    .nodes {
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+    }
+
+    .node {
+      border-radius: 0.9rem;
+      padding: 0.7rem 0.85rem;
+      background: linear-gradient(135deg, #0b1018, #070b11);
+      border: 1px solid rgba(255,255,255,0.06);
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 0.5rem;
+      align-items: center;
+    }
+
+    .node-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 0.1rem;
+    }
+
+    .node-sub {
+      font-size: 0.78rem;
+      color: var(--text-soft);
+      margin-bottom: 0.15rem;
+    }
+
+    .node-bar {
+      font-size: 0.76rem;
+      color: rgba(255,255,255,0.8);
+      font-style: italic;
+    }
+
+    .btn {
+      border: none;
+      cursor: pointer;
+      border-radius: 999px;
+      padding: 0.48rem 1.2rem;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      background: radial-gradient(circle at 10% 0%, #ffe199 0, #f5b544 45%, #f0722b 90%);
+      color: #1d1208;
+      box-shadow: 0 0 16px rgba(245,181,68,0.65);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      white-space: nowrap;
+    }
+
+    .btn:active {
+      transform: translateY(1px) scale(0.99);
+      box-shadow: 0 0 8px rgba(245,181,68,0.55);
+    }
+
+    .btn[data-state="playing"] {
+      background: radial-gradient(circle at 10% 0%, #ffb3c6 0, #ff3366 45%, #c2185b 90%);
+      color: #fff2f7;
+      box-shadow: 0 0 16px rgba(255,51,102,0.75);
+    }
+
+    .node-tagline {
+      font-size: 0.74rem;
+      color: var(--text-soft);
+      margin-top: 0.85rem;
+    }
+
+    .footer {
+      margin-top: 1.6rem;
+      font-size: 0.78rem;
+      color: var(--text-soft);
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding-top: 0.9rem;
+    }
+
+    .footer a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .footer a:hover {
+      text-decoration: underline;
+    }
+
+    #debug {
+      margin-top: 0.75rem;
+      font-size: 0.7rem;
+      color: #ffb3c6;
+      min-height: 1em;
+    }
+
     audio {
       display: none;
     }
@@ -125,6 +356,7 @@
     </footer>
   </div>
 
+  <!-- AUDIO ELEMENTS -->
   <audio id="track-intro"  src="assets/flamelaw_intro.mp3"></audio>
   <audio id="track-holo"   src="assets/holo_chambers_freestyle.mp3"></audio>
   <audio id="track-shadow" src="assets/shadow_docket_cipher.mp3"></audio>
@@ -139,12 +371,13 @@
         shadow: document.getElementById("track-shadow"),
       };
 
+      // Log audio loading errors with exact URL
       Object.entries(tracks).forEach(([key, audio]) => {
         if (!audio) return;
         audio.addEventListener("error", () => {
           if (debug) {
-            debug.textContent = "Audio failed to load for '" + key +
-              "' at: " + audio.getAttribute("src");
+            debug.textContent =
+              "Audio failed to load for '" + key + "' at: " + audio.src;
           }
         });
       });
@@ -173,13 +406,14 @@
         currentButton = null;
       }
 
-      function playTrack(key, button) {
+      async function playTrack(key, button) {
         const audio = tracks[key];
         if (!audio) {
           log("No audio element mapped for key: " + key);
           return;
         }
 
+        // If already playing, stop this track
         if (currentKey === key && !audio.paused) {
           stopAll();
           log("Stopped: " + key);
@@ -188,16 +422,17 @@
 
         stopAll();
 
-        audio.play().then(() => {
+        try {
+          await audio.play();
           button.dataset.state = "playing";
           button.textContent = "⏸ Pause";
           currentKey = key;
           currentButton = button;
-          log("Playing: " + key);
-        }).catch(err => {
+          log("Playing: " + key + " (" + audio.src + ")");
+        } catch (err) {
           log("Playback error for " + key + ": " + err.message);
           resetButton(button);
-        });
+        }
 
         audio.onended = function () {
           if (currentKey === key) {

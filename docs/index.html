@@ -267,22 +267,16 @@
       <!-- LEFT: AVATAR / VIDEO -->
       <section class="card">
         <div class="avatar-frame">
-          <!--
-            OPTION A — STATIC AVATAR IMAGE (current)
-            Make sure this path matches your actual file:
-            /assets/avatar/FlameLaw_Avatar_V1.png
-          -->
+          <!-- Use your real PNG -->
           <img
-            src="../assets/avatar/FlameLaw_Avatar_V1.png"
+            src="assets/avatar/FlameLaw_Avatar_V1.png"
             alt="Flame Law Avatar V1 — Holographic MC"
           />
 
+          <!-- Or swap to the video version -->
           <!--
-            OPTION B — HOLOGRAM VIDEO
-            When you're ready, swap the <img> above for this <video> tag,
-            and set the correct filename in the src.
           <video
-            src="../assets/avatar/video/FlameLaw_Avatar_V1.mp4"
+            src="assets/avatar/video/ai-bargod.mp4"
             playsinline
             muted
             loop
@@ -326,7 +320,7 @@
                 “First we etch the law in fire, then we teach the bots to listen…”
               </div>
             </div>
-            <button class="btn" data-track="intro">
+            <button class="btn" data-track="intro" type="button" data-state="stopped">
               ▶ Play
             </button>
           </article>
@@ -340,7 +334,7 @@
                 “Every bar a data packet, every cadence is a key…”
               </div>
             </div>
-            <button class="btn" data-track="holo">
+            <button class="btn" data-track="holo" type="button" data-state="stopped">
               ▶ Play
             </button>
           </article>
@@ -354,7 +348,7 @@
                 “I keep a shadow docket where the verdicts never tweet…”
               </div>
             </div>
-            <button class="btn" data-track="shadow">
+            <button class="btn" data-track="shadow" type="button" data-state="stopped">
               ▶ Play
             </button>
           </article>
@@ -367,29 +361,87 @@
     <footer class="footer">
       Flame Division MusicAI runs under internal <strong>Flame Law • ShadowSoundProtocol</strong>.  
       Public playback here is demo-only.  
-      Repo: <a href="https://github.com/Andrew-Davis-Ai-portfolio/Flame-Division-MusicAI" target="_blank">Flame-Division-MusicAI</a>
+      Repo:
+      <a href="https://github.com/Andrew-Davis-Ai-portfolio/Flame-Division-MusicAI" target="_blank">
+        Flame-Division-MusicAI
+      </a>
     </footer>
   </div>
 
   <!-- AUDIO ELEMENTS (hidden) -->
-  <!-- 🔊 Make sure these src paths match your files in /assets -->
-  <audio id="track-intro" src="../assets/flamelaw_intro.mp3"></audio>
-  <audio id="track-holo"  src="../assets/holo_chambers_freestyle.mp3"></audio>
-  <audio id="track-shadow" src="../assets/shadow_docket_cipher.mp3"></audio>
+  <audio id="track-intro"  src="assets/flamelaw_intro.mp3"></audio>
+  <audio id="track-holo"   src="assets/holo_chambers_freestyle.mp3"></audio>
+  <audio id="track-shadow" src="assets/shadow_docket_cipher.mp3"></audio>
 
-    <script>
+  <script>
     // Simple audio controller: one track at a time
     (function () {
-      const buttons = document.querySelectorAll(".btn[data-track]");
+      const buttons = Array.from(document.querySelectorAll(".btn[data-track]"));
       const tracks = {
         intro:  document.getElementById("track-intro"),
         holo:   document.getElementById("track-holo"),
         shadow: document.getElementById("track-shadow"),
       };
 
-      function stopAll() { ... }
+      let currentKey = null;
+      let currentButton = null;
 
-      function playTrack(key, button) { ... }
+      function resetButton(btn) {
+        if (!btn) return;
+        btn.dataset.state = "stopped";
+        btn.textContent = "▶ Play";
+      }
+
+      function stopAll() {
+        Object.values(tracks).forEach(audio => {
+          if (!audio) return;
+          audio.pause();
+          audio.currentTime = 0;
+        });
+
+        buttons.forEach(btn => resetButton(btn));
+
+        currentKey = null;
+        currentButton = null;
+      }
+
+      async function playTrack(key, button) {
+        const audio = tracks[key];
+        if (!audio) {
+          console.warn("No audio element found for key:", key);
+          return;
+        }
+
+        // If this track is already playing, treat click as Pause/Stop
+        if (currentKey === key && !audio.paused) {
+          stopAll();
+          return;
+        }
+
+        // Stop any other track first
+        stopAll();
+
+        try {
+          await audio.play();
+          button.dataset.state = "playing";
+          button.textContent = "⏸ Pause";
+
+          currentKey = key;
+          currentButton = button;
+
+          audio.onended = function () {
+            // Only reset if this is still the active track
+            if (currentKey === key) {
+              resetButton(button);
+              currentKey = null;
+              currentButton = null;
+            }
+          };
+        } catch (err) {
+          console.error("Audio playback failed:", err);
+          resetButton(button);
+        }
+      }
 
       buttons.forEach(btn => {
         btn.addEventListener("click", () => {

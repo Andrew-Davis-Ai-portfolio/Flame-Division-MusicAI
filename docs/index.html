@@ -2,24 +2,20 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>Flame Division MusicAI — Flame Law Hologram</title>
+  <title>Flame Division MusicAI — ShadowSoundProtocol</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description"
-        content="Flame Division MusicAI — Flame Law holographic avatar performing bar-heavy AI-certified lyrics. ShadowSoundProtocol live demo." />
+
+  <!-- Basic dark / gold theme -->
   <style>
     :root {
-      --bg: #05060a;
-      --bg-alt: #0b0e16;
-      --accent: #d4af37;
-      --accent-soft: rgba(212, 175, 55, 0.35);
-      --accent-strong: rgba(255, 180, 60, 0.85);
-      --text-main: #f5f7ff;
-      --text-soft: #aeb4c6;
-      --danger: #ff4b4b;
-      --border-subtle: rgba(255, 255, 255, 0.08);
-      --card-radius: 18px;
-      --shadow-strong: 0 0 40px rgba(0, 0, 0, 0.9);
-      --shadow-gold: 0 0 24px rgba(212, 175, 55, 0.55);
+      --bg: #05070c;
+      --bg-alt: #0b1018;
+      --card: #101624;
+      --accent: #f5b544;
+      --accent-soft: rgba(245,181,68,0.16);
+      --text: #f7f7ff;
+      --text-soft: #b0b7c9;
+      --danger: #ff3366;
     }
 
     * {
@@ -30,668 +26,411 @@
 
     body {
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
-        Segoe UI, Roboto, sans-serif;
-      background:
-        radial-gradient(circle at top, #18243a 0, transparent 55%),
-        radial-gradient(circle at bottom, #05060a 0, #000 60%);
-      color: var(--text-main);
+                   "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #1b2540 0, #05070c 55%);
+      color: var(--text);
       min-height: 100vh;
+      padding: 1.5rem;
       display: flex;
       justify-content: center;
-      padding: 32px 16px 48px;
     }
 
     .page {
       width: 100%;
-      max-width: 1100px;
-      background: linear-gradient(145deg, rgba(4, 6, 16, 0.98), rgba(5, 8, 20, 0.98));
-      border-radius: 28px;
-      border: 1px solid rgba(255, 255, 255, 0.06);
-      box-shadow:
-        0 0 40px rgba(0, 0, 0, 0.9),
-        0 0 120px rgba(0, 0, 0, 0.9);
-      padding: 24px 18px 28px;
-      backdrop-filter: blur(18px);
+      max-width: 960px;
+      margin: 0 auto;
     }
 
-    @media (min-width: 900px) {
-      .page {
-        padding: 28px 32px 32px;
-      }
-    }
-
-    header {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      margin-bottom: 22px;
-    }
-
-    .badge-row {
-      display: flex;
+    .badge {
+      display: inline-flex;
       align-items: center;
-      gap: 8px;
-      font-size: 13px;
-      color: var(--accent-soft);
+      gap: 0.5rem;
+      padding: 0.25rem 0.9rem;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #221108, #41240f);
+      border: 1px solid rgba(245,181,68,0.45);
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
-      letter-spacing: 0.13em;
+      color: var(--accent);
+      margin-bottom: 0.75rem;
     }
 
-    .badge-row span {
-      padding: 4px 9px;
-      border-radius: 999px;
-      border: 1px solid rgba(212, 175, 55, 0.5);
-      background: radial-gradient(circle at top left, rgba(212, 175, 55, 0.22), transparent 60%);
+    .badge span.emoji {
+      font-size: 1rem;
     }
 
     h1 {
-      font-size: clamp(26px, 3vw, 32px);
-      line-height: 1.15;
-      text-transform: uppercase;
-      letter-spacing: 0.09em;
-    }
-
-    h1 .script {
-      font-weight: 500;
-      font-size: 0.82em;
-      color: var(--accent-soft);
-      text-transform: none;
-      letter-spacing: 0.04em;
+      font-size: clamp(1.9rem, 4vw, 2.6rem);
+      line-height: 1.1;
+      margin-bottom: 0.4rem;
     }
 
     .subtitle {
-      font-size: 14px;
+      font-size: 0.98rem;
       color: var(--text-soft);
-      max-width: 620px;
+      max-width: 40rem;
+      line-height: 1.4;
+      margin-bottom: 1.5rem;
     }
 
-    main {
+    .layout {
       display: grid;
-      grid-template-columns: minmax(0, 3fr) minmax(0, 2.2fr);
-      gap: 20px;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+      gap: 1.5rem;
     }
 
-    @media (max-width: 860px) {
-      main {
+    @media (max-width: 800px) {
+      .layout {
         grid-template-columns: minmax(0, 1fr);
       }
     }
 
-    /* HOLOGRAM CARD */
-
-    .holo-card {
+    .card {
+      background: radial-gradient(circle at top, rgba(245,181,68,0.12), transparent 55%),
+                  var(--card);
+      border-radius: 1.2rem;
+      border: 1px solid rgba(255,255,255,0.06);
+      box-shadow: 0 22px 50px rgba(0,0,0,0.75);
+      padding: 1.25rem 1.25rem 1.4rem;
       position: relative;
-      border-radius: var(--card-radius);
-      background: radial-gradient(circle at top, #151c2c 0, #05060a 60%);
-      border: 1px solid rgba(255, 255, 255, 0.07);
-      box-shadow: var(--shadow-strong), var(--shadow-gold);
-      padding: 16px 16px 20px;
       overflow: hidden;
-      isolation: isolate;
     }
 
-    .holo-card::before {
+    .card::before {
       content: "";
       position: absolute;
       inset: -40%;
       background:
-        radial-gradient(circle at 20% 0, rgba(111, 194, 255, 0.15), transparent 55%),
-        radial-gradient(circle at 80% 100%, rgba(255, 125, 60, 0.28), transparent 55%);
-      mix-blend-mode: screen;
-      opacity: 0.8;
-      pointer-events: none;
-      z-index: -1;
-      animation: holoGlow 14s ease-in-out infinite alternate;
-    }
-
-    .frame-title {
-      font-size: 13px;
-      text-transform: uppercase;
-      letter-spacing: 0.15em;
-      color: var(--accent-soft);
-      margin-bottom: 10px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .frame-title span {
-      font-size: 11px;
-      color: rgba(174, 180, 198, 0.7);
-    }
-
-    .holo-frame {
-      position: relative;
-      border-radius: 22px;
-      border: 1px solid rgba(212, 175, 55, 0.55);
-      box-shadow:
-        0 0 22px rgba(212, 175, 55, 0.6),
-        0 0 70px rgba(0, 0, 0, 0.8);
-      overflow: hidden;
-      aspect-ratio: 3 / 4;
-      background: radial-gradient(circle at top, #151b28 0, #05060a 60%);
-    }
-
-    .holo-frame::before {
-      content: "";
-      position: absolute;
-      inset: -15%;
-      background:
-        radial-gradient(circle at 20% 0, rgba(255, 255, 255, 0.18), transparent 55%),
-        radial-gradient(circle at 80% 100%, rgba(255, 153, 0, 0.22), transparent 60%);
-      mix-blend-mode: screen;
+        radial-gradient(circle at 10% 0%, rgba(245,181,68,0.13), transparent 50%),
+        radial-gradient(circle at 90% 100%, rgba(99, 210, 255, 0.12), transparent 55%);
       opacity: 0.7;
       pointer-events: none;
-      animation: scanline 6s linear infinite;
+      z-index: -1;
     }
 
-    .holo-video,
-    .holo-image-fallback {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-      filter: saturate(1.08) contrast(1.05);
-    }
-
-    .holo-image-fallback {
-      position: absolute;
-      inset: 0;
-      opacity: 0.2; /* only visible before video loads */
-    }
-
-    .holo-overlay-grid {
-      position: absolute;
-      inset: 0;
-      background-image: linear-gradient(
-          rgba(255, 255, 255, 0.06) 1px,
-          transparent 1px
-        ), linear-gradient(
-          90deg,
-          rgba(255, 255, 255, 0.04) 1px,
-          transparent 1px
-        );
-      background-size: 32px 32px;
-      mix-blend-mode: soft-light;
-      opacity: 0.75;
-      pointer-events: none;
-    }
-
-    .holo-scanline {
-      position: absolute;
-      left: 0;
-      right: 0;
-      height: 32%;
-      background: linear-gradient(
-        to bottom,
-        rgba(255, 255, 255, 0) 0,
-        rgba(122, 209, 255, 0.18) 45%,
-        rgba(255, 255, 255, 0) 100%
-      );
-      mix-blend-mode: screen;
-      animation: sweep 5s ease-in-out infinite;
-      pointer-events: none;
-    }
-
-    .holo-play-button {
-      position: absolute;
-      inset: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      pointer-events: none;
-    }
-
-    .holo-play-button button {
-      pointer-events: auto;
-      border: 1px solid rgba(212, 175, 55, 0.7);
-      background: radial-gradient(circle at 30% 0, #f6e7b2 0, #c28b1a 40%, #7a4e00 100%);
-      color: #1a1200;
-      border-radius: 999px;
-      padding: 10px 26px;
-      font-size: 13px;
-      font-weight: 600;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      box-shadow:
-        0 0 18px rgba(212, 175, 55, 0.9),
-        0 0 45px rgba(0, 0, 0, 0.9);
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      cursor: pointer;
-      transition: transform 0.12s ease, box-shadow 0.12s ease, filter 0.12s ease;
-    }
-
-    .holo-play-button button span {
-      font-size: 11px;
-      opacity: 0.85;
-      text-transform: none;
-      letter-spacing: 0.06em;
-    }
-
-    .holo-play-button button:hover {
-      transform: translateY(-1px) scale(1.02);
-      filter: brightness(1.05);
-      box-shadow:
-        0 0 22px rgba(212, 175, 55, 1),
-        0 0 60px rgba(0, 0, 0, 0.9);
-    }
-
-    .holo-caption {
-      margin-top: 12px;
-      font-size: 12px;
-      color: var(--text-soft);
-      display: flex;
-      justify-content: space-between;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
-
-    .holo-caption strong {
-      color: var(--accent);
-      font-weight: 600;
-    }
-
-    .chip {
-      padding: 3px 9px;
-      border-radius: 999px;
-      border: 1px solid rgba(255, 255, 255, 0.07);
-      font-size: 11px;
-      color: rgba(174, 180, 198, 0.8);
-      background: rgba(5, 8, 20, 0.9);
-    }
-
-    /* AUDIO PANEL */
-
-    .audio-panel {
-      border-radius: var(--card-radius);
-      background: radial-gradient(circle at top left, #181b26 0, #05060a 70%);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      padding: 16px 16px 20px;
-      box-shadow: 0 0 28px rgba(0, 0, 0, 0.85);
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-    }
-
-    .audio-panel h2 {
-      font-size: 15px;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      margin-bottom: 4px;
-    }
-
-    .audio-sub {
-      font-size: 12px;
-      color: var(--text-soft);
-      margin-bottom: 10px;
-    }
-
-    .audio-track {
-      border-radius: 15px;
-      padding: 10px 10px 10px 12px;
-      border: 1px solid var(--border-subtle);
-      background: linear-gradient(135deg, rgba(12, 15, 26, 0.98), rgba(8, 10, 18, 0.98));
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-    }
-
-    .audio-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 8px;
-    }
-
-    .audio-meta {
-      display: flex;
-      flex-direction: column;
-      gap: 1px;
-    }
-
-    .audio-title {
-      font-size: 13px;
-      font-weight: 600;
-    }
-
-    .audio-tagline {
-      font-size: 11px;
-      color: var(--text-soft);
-    }
-
-    .audio-btn {
-      border-radius: 999px;
-      border: 1px solid rgba(212, 175, 55, 0.7);
-      background: radial-gradient(circle at 20% 0, rgba(212, 175, 55, 0.24), rgba(10, 8, 0, 0.9));
-      color: var(--accent);
-      padding: 6px 14px;
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      cursor: pointer;
-      box-shadow: 0 0 10px rgba(212, 175, 55, 0.4);
-      transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.12s ease;
-    }
-
-    .audio-btn:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 0 18px rgba(212, 175, 55, 0.75);
-      background: radial-gradient(circle at 20% 0, rgba(246, 226, 155, 0.6), rgba(12, 10, 2, 0.98));
-    }
-
-    .audio-btn[data-state="playing"] {
-      background: radial-gradient(circle at 20% 0, rgba(255, 255, 255, 0.9), #d4af37);
-      color: #1a1200;
-      box-shadow:
-        0 0 16px rgba(212, 175, 55, 0.9),
-        0 0 40px rgba(0, 0, 0, 0.9);
-    }
-
-    .audio-bars {
-      font-family: "SF Mono", ui-monospace, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-      font-size: 11px;
-      color: rgba(174, 180, 198, 0.9);
-      margin-top: 3px;
-      line-height: 1.5;
-      max-height: 4.4em;
+    .avatar-frame {
+      border-radius: 1rem;
       overflow: hidden;
+      border: 1px solid rgba(245,181,68,0.5);
+      background: radial-gradient(circle at top, rgba(245,181,68,0.18), #020307);
     }
 
-    .footer-note {
-      margin-top: 14px;
-      font-size: 11px;
-      color: rgba(153, 163, 186, 0.82);
-      border-top: 1px solid rgba(255, 255, 255, 0.06);
-      padding-top: 10px;
+    .avatar-frame img,
+    .avatar-frame video {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .avatar-meta {
+      margin-top: 0.8rem;
+      font-size: 0.78rem;
+      color: var(--text-soft);
+    }
+
+    .avatar-meta strong {
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .pill-row {
       display: flex;
-      justify-content: space-between;
-      gap: 12px;
       flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: 0.5rem;
     }
 
-    .footer-note a {
+    .pill {
+      font-size: 0.7rem;
+      border-radius: 999px;
+      padding: 0.16rem 0.6rem;
+      border: 1px solid rgba(245,181,68,0.32);
+      color: var(--accent);
+      background: rgba(0,0,0,0.45);
+    }
+
+    h2 {
+      font-size: 1.12rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 0.85rem;
+    }
+
+    .nodes {
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+    }
+
+    .node {
+      border-radius: 0.9rem;
+      padding: 0.7rem 0.85rem;
+      background: linear-gradient(135deg, #0b1018, #070b11);
+      border: 1px solid rgba(255,255,255,0.06);
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 0.5rem;
+      align-items: center;
+    }
+
+    .node-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 0.1rem;
+    }
+
+    .node-sub {
+      font-size: 0.78rem;
+      color: var(--text-soft);
+      margin-bottom: 0.15rem;
+    }
+
+    .node-bar {
+      font-size: 0.76rem;
+      color: rgba(255,255,255,0.8);
+      font-style: italic;
+    }
+
+    .btn {
+      border: none;
+      cursor: pointer;
+      border-radius: 999px;
+      padding: 0.48rem 1.2rem;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      background: radial-gradient(circle at 10% 0%, #ffe199 0, #f5b544 45%, #f0722b 90%);
+      color: #1d1208;
+      box-shadow: 0 0 16px rgba(245,181,68,0.65);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      white-space: nowrap;
+    }
+
+    .btn:active {
+      transform: translateY(1px) scale(0.99);
+      box-shadow: 0 0 8px rgba(245,181,68,0.55);
+    }
+
+    .btn[data-state="playing"] {
+      background: radial-gradient(circle at 10% 0%, #ffb3c6 0, #ff3366 45%, #c2185b 90%);
+      color: #fff2f7;
+      box-shadow: 0 0 16px rgba(255,51,102,0.75);
+    }
+
+    .node-tagline {
+      font-size: 0.74rem;
+      color: var(--text-soft);
+      margin-top: 0.85rem;
+    }
+
+    .footer {
+      margin-top: 1.6rem;
+      font-size: 0.78rem;
+      color: var(--text-soft);
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding-top: 0.9rem;
+    }
+
+    .footer a {
       color: var(--accent);
       text-decoration: none;
-      border-bottom: 1px dotted rgba(212, 175, 55, 0.7);
+    }
+    .footer a:hover {
+      text-decoration: underline;
     }
 
-    .footer-note a:hover {
-      text-decoration: none;
-      border-bottom-style: solid;
-    }
-
-    /* ANIMATIONS */
-
-    @keyframes sweep {
-      0% { transform: translateY(-120%); opacity: 0; }
-      32% { opacity: 0.9; }
-      70% { opacity: 0.2; }
-      100% { transform: translateY(120%); opacity: 0; }
-    }
-
-    @keyframes holoGlow {
-      0% { opacity: 0.7; transform: translate3d(0, 0, 0); }
-      100% { opacity: 1; transform: translate3d(0, -10px, 0); }
-    }
-
-    @keyframes scanline {
-      0% { transform: translate3d(0, 0, 0); opacity: 0.7; }
-      100% { transform: translate3d(0, -18px, 0); opacity: 0.3; }
-    }
-
-    @keyframes float-soft {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-6px); }
+    /* Hide native audio UI, we drive it with buttons */
+    audio {
+      display: none;
     }
   </style>
 </head>
 <body>
   <div class="page">
-    <header>
-      <div class="badge-row">
-        <span>🔥 Flame Division MusicAI</span>
-        <span>ShadowSoundProtocol · Live Demo</span>
-      </div>
-      <h1>
-        Flame Law Hologram<span class="script"> · AI-Aligned Bar Engine</span>
-      </h1>
-      <p class="subtitle">
-        Certified AI officer meets shadow-coded lyricist. This page hosts the
-        <strong>Flame Law avatar</strong> performing over encrypted frequencies —
-        with on-page playback for multiple MusicAI ciphers.
-      </p>
-    </header>
+    <!-- HEADER -->
+    <div class="badge">
+      <span class="emoji">🔥</span>
+      Flame Division • MusicAI Node
+    </div>
+    <h1>Flame-Division-MusicAI</h1>
+    <p class="subtitle">
+      Music Industry AI • <strong>ShadowSoundProtocol</strong>.  
+      Certified governance brain with a holographic rap avatar — bar-heavy,
+      rights-locked, and coded in Flame Law.
+    </p>
 
-    <main>
-      <!-- HOLOGRAPHIC PERFORMANCE PANEL -->
-      <section class="holo-card">
-        <div class="frame-title">
-          <div>Primary Performance · FLAME LAW V1</div>
-          <span>Hologram Render · LumaFusion · D-ID Source</span>
-        </div>
-
-        <div class="holo-frame" style="animation: float-soft 9s ease-in-out infinite;">
-          <!-- Static fallback (shows under video & while loading) -->
+    <div class="layout">
+      <!-- LEFT: AVATAR / VIDEO -->
+      <section class="card">
+        <div class="avatar-frame">
+          <!--
+            OPTION A — STATIC AVATAR IMAGE (current)
+            Make sure this path matches your actual file:
+            /assets/avatar/FlameLaw_Avatar_V1.png
+          -->
           <img
             src="../assets/avatar/FlameLaw_Avatar_V1.png"
-            alt="Flame Law avatar"
-            class="holo-image-fallback"
+            alt="Flame Law Avatar V1 — Holographic MC"
           />
 
-          <!-- Main video -->
+          <!--
+            OPTION B — HOLOGRAM VIDEO
+            When you're ready, swap the <img> above for this <video> tag,
+            and set the correct filename in the src.
           <video
-  id="flameVideo"
-  class="holo-video"
-  playsinline
-  muted
-  controls
-  preload="metadata"
->
-  <source src="../assets/avatar/video/FlameLaw_Avatar_V1.mp4" type="video/mp4" />
-  Your browser does not support the video tag.
-</video>
-          <div class="holo-overlay-grid"></div>
-          <div class="holo-scanline"></div>
+            src="../assets/avatar/video/FlameLaw_Avatar_V1.mp4"
+            playsinline
+            muted
+            loop
+            controls
+          ></video>
+          -->
+        </div>
 
-          <div class="holo-play-button">
-            <button id="videoControlBtn">
-              ▶︎ PLAY HOLOGRAM
-              <span>Flame Law · Shadow Docket Cipher</span>
-            </button>
+        <div class="avatar-meta">
+          <strong>Flame Law Avatar V1</strong><br />
+          Generated from CAIO / CAIIP credential stack and Flame Law metadata.
+          Designed as a holographic performance shell for MusicAI output.
+          <div class="pill-row">
+            <span class="pill">Demo-only playback</span>
+            <span class="pill">Rights: Flame Division / Andrew W. Davis</span>
           </div>
         </div>
 
-        <div class="holo-caption">
-          <div>
-            <strong>Flame Law Avatar V1</strong><br />
-            Generated from certified CAIO/CAIIP metadata, rendered through
-            holographic motion and shield layering.
-          </div>
-          <div class="chip">
-            Mode: Non-commercial demo · Rights: Flame Division / Andrew W. Davis
-          </div>
-        </div>
+        <p class="node-tagline">
+          This landing node is a proof-of-execution: GitHub-native,
+          bar-driven, and ready to plug into vector DBs, Unreal, and multi-agent
+          stacks when the rest of the system comes online.
+        </p>
       </section>
 
-      <!-- AUDIO / BARS PANEL -->
-      <aside class="audio-panel">
-        <h2>ShadowSoundProtocol · Audio Nodes</h2>
-        <p class="audio-sub">
-          Tap a node to let MusicAI spit. Only one cipher plays at a time —
-          the rest stand down by Flame Law.
+      <!-- RIGHT: AUDIO NODES -->
+      <section class="card">
+        <h2>ShadowSoundProtocol • Audio Nodes</h2>
+        <p class="node-tagline">
+          Tap a node to let MusicAI spit. One cipher at a time — the others stand down.
         </p>
 
-        <!-- TRACK 1 -->
-        <article class="audio-track">
-          <div class="audio-header">
-            <div class="audio-meta">
-              <div class="audio-title">FlameLaw_Intro.mp3</div>
-              <div class="audio-tagline">Opening Statement · Court of Creation</div>
-            </div>
-            <button class="audio-btn" data-audio-id="track-intro" data-state="idle">
-              ▶︎ PLAY
-            </button>
-          </div>
-          <div class="audio-bars">
-            “Flame Law loaded in the docket, I don’t bargain with the odds,<br />
-            I just cross-examine data while I’m dialoguing with gods.”
-          </div>
-          <audio id="track-intro" src="../assets/flamelaw_intro.mp3"></audio>
-        </article>
+        <div class="nodes">
 
-        <!-- TRACK 2 -->
-        <article class="audio-track">
-          <div class="audio-header">
-            <div class="audio-meta">
-              <div class="audio-title">Holo_Chambers_Freestyle.mp3</div>
-              <div class="audio-tagline">Training Sim · Holographic War Room</div>
+          <!-- NODE 1 -->
+          <article class="node">
+            <div>
+              <div class="node-title">FlameLaw Intro • Node-01</div>
+              <div class="node-sub">Opening Protocol · Mission Brief Cipher</div>
+              <div class="node-bar">
+                “First we etch the law in fire, then we teach the bots to listen…”
+              </div>
             </div>
-            <button class="audio-btn" data-audio-id="track-holo" data-state="idle">
-              ▶︎ PLAY
+            <button class="btn" data-track="intro">
+              ▶ Play
             </button>
-          </div>
-          <div class="audio-bars">
-            “Every bar a data packet, every cadence is a key,<br />
-            when I’m routing through the matrix, every firewall bows to me.”
-          </div>
-          <audio id="track-holo" src="../assets/holo_chambers_freestyle.mp3"></audio>
-        </article>
+          </article>
 
-        <!-- TRACK 3 -->
-        <article class="audio-track">
-          <div class="audio-header">
-            <div class="audio-meta">
-              <div class="audio-title">Shadow_Docket_Cipher.mp3</div>
-              <div class="audio-tagline">Sealed Motion · After-Hours Tribunal</div>
+          <!-- NODE 2 -->
+          <article class="node">
+            <div>
+              <div class="node-title">Holo Chambers Freestyle • Node-02</div>
+              <div class="node-sub">Training Sim · Holographic War Room</div>
+              <div class="node-bar">
+                “Every bar a data packet, every cadence is a key…”
+              </div>
             </div>
-            <button class="audio-btn" data-audio-id="track-shadow" data-state="idle">
-              ▶︎ PLAY
+            <button class="btn" data-track="holo">
+              ▶ Play
             </button>
-          </div>
-          <div class="audio-bars">
-            “I keep a shadow docket where the verdicts never tweet,<br />
-            but the universe updates every time my heart beats.”
-          </div>
-          <audio id="track-shadow" src="../assets/shadow_docket_cipher.mp3"></audio>
-        </article>
+          </article>
 
-        <div class="footer-note">
-          <div>
-            Flame Division MusicAI operates under internal
-            <strong>Flame Law · ShadowSoundProtocol</strong>. Public playback is demo-only.
-          </div>
-          <div>
-            Repo:&nbsp;
-            <a href="https://github.com/Andrew-Davis-Ai-portfolio/Flame-Division-MusicAI" target="_blank" rel="noopener">
-              Flame-Division-MusicAI
-            </a>
-          </div>
+          <!-- NODE 3 -->
+          <article class="node">
+            <div>
+              <div class="node-title">Shadow Docket Cipher • Node-03</div>
+              <div class="node-sub">Sealed Motion · After-Hours Tribunal</div>
+              <div class="node-bar">
+                “I keep a shadow docket where the verdicts never tweet…”
+              </div>
+            </div>
+            <button class="btn" data-track="shadow">
+              ▶ Play
+            </button>
+          </article>
+
         </div>
-      </aside>
-    </main>
+      </section>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      Flame Division MusicAI runs under internal <strong>Flame Law • ShadowSoundProtocol</strong>.  
+      Public playback here is demo-only.  
+      Repo: <a href="https://github.com/Andrew-Davis-Ai-portfolio/Flame-Division-MusicAI" target="_blank">Flame-Division-MusicAI</a>
+    </footer>
   </div>
 
- <script>
-  (function () {
-    console.log("[FDM] script loaded");
+  <!-- AUDIO ELEMENTS (hidden) -->
+  <!-- 🔊 Make sure these src paths match your files in /assets -->
+  <audio id="track-intro" src="../assets/flamelaw_intro.mp3"></audio>
+  <audio id="track-holo"  src="../assets/holo_chambers_freestyle.mp3"></audio>
+  <audio id="track-shadow" src="../assets/shadow_docket_cipher.mp3"></audio>
 
-    const video = document.getElementById("flameVideo");
-    const videoBtn = document.getElementById("videoControlBtn");
-    const audioButtons = Array.from(document.querySelectorAll(".audio-btn"));
-    const audioTracks = [];
+  <script>
+    // Simple audio controller: one track at a time
+    (function () {
+      const buttons = document.querySelectorAll(".btn[data-track]");
+      const tracks = {
+        intro:  document.getElementById("track-intro"),
+        holo:   document.getElementById("track-holo"),
+        shadow: document.getElementById("track-shadow"),
+      };
 
-    // Collect all audio elements + buttons
-    audioButtons.forEach((btn) => {
-      const id = btn.dataset.audioId;
-      const audio = document.getElementById(id);
-      if (!audio) {
-        console.log("[FDM] missing audio element for", id);
-        return;
+      function stopAll() {
+        Object.values(tracks).forEach(a => {
+          if (!a) return;
+          a.pause();
+          a.currentTime = 0;
+        });
+        buttons.forEach(btn => {
+          btn.dataset.state = "";
+          btn.textContent = "▶ Play";
+        });
       }
-      audioTracks.push({ btn, audio });
-    });
 
-    function stopAllAudio() {
-      audioTracks.forEach(({ btn, audio }) => {
-        audio.pause();
-        audio.currentTime = 0;
-        btn.dataset.state = "idle";
-        btn.textContent = "▶︎ PLAY";
-      });
-    }
-
-    function stopVideo() {
-      if (!video || !videoBtn) return;
-      video.pause();
-      videoBtn.textContent = "▶︎ PLAY HOLOGRAM";
-    }
-
-    // VIDEO CONTROL
-    if (video && videoBtn) {
-      videoBtn.addEventListener("click", function () {
-        console.log("[FDM] video button clicked");
-        stopAllAudio();
-
-        if (video.paused) {
-          video
-            .play()
-            .then(() => {
-              videoBtn.textContent = "⏸ PAUSE HOLOGRAM";
-            })
-            .catch((err) => {
-              console.log("[FDM] video play error:", err);
-              alert("Browser blocked video autoplay. Try tapping the video directly.");
-            });
-        } else {
-          stopVideo();
+      function playTrack(key, button) {
+        const audio = tracks[key];
+        if (!audio) {
+          alert("Audio track not found for key: " + key);
+          return;
         }
-      });
 
-      video.addEventListener("ended", function () {
-        videoBtn.textContent = "▶︎ PLAY HOLOGRAM";
-      });
-    }
-
-    // AUDIO CONTROL
-    audioTracks.forEach(({ btn, audio }) => {
-      btn.addEventListener("click", function () {
-        console.log("[FDM] audio button clicked:", btn.dataset.audioId);
-
-        // Stop hologram video when any track plays
-        stopVideo();
-
-        const isPlaying = btn.dataset.state === "playing";
-
-        // Stop everything first
-        stopAllAudio();
-
-        if (!isPlaying) {
-          audio
-            .play()
-            .then(() => {
-              btn.dataset.state = "playing";
-              btn.textContent = "⏸ PAUSE";
-            })
-            .catch((err) => {
-              console.log("[FDM] audio play error:", err);
-              alert("Browser blocked audio playback. Try tapping again.");
-            });
+        // If this one is already playing, stop all.
+        if (button.dataset.state === "playing") {
+          stopAll();
+          return;
         }
-      });
 
-      audio.addEventListener("ended", function () {
-        btn.dataset.state = "idle";
-        btn.textContent = "▶︎ PLAY";
-      });
-    });
+        stopAll(); // stop others
 
-    console.log("[FDM] init complete. Tracks:", audioTracks.length);
-  })();
-</script>
+        // On iOS/Safari, this click counts as a user gesture so play() is allowed.
+        audio.play().then(() => {
+          button.dataset.state = "playing";
+          button.textContent = "⏸ Stop";
+        }).catch(err => {
+          console.error("Playback blocked or failed:", err);
+          alert("Browser blocked audio playback. Tap again or check volume / mute.");
+        });
+      }
+
+      buttons.forEach(btn => {
+        btn.addEventListener("click", () => {
+          const key = btn.dataset.track;
+          playTrack(key, btn);
+        });
+      });
+    })();
+  </script>
 </body>
 </html>

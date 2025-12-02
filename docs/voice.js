@@ -70,6 +70,10 @@ My science? A war you don’t outrun or erase.
   const debug = document.getElementById("debug");
   const buttons = Array.from(document.querySelectorAll(".btn[data-track]"));
 
+  if (debug) {
+    debug.textContent = "voice.js loaded — tap a node to hear TTS bars.";
+  }
+
   let currentKey = null;
   let currentUtterance = null;
   let currentButton = null;
@@ -85,7 +89,7 @@ My science? A war you don’t outrun or erase.
   }
 
   function stopCurrent() {
-    if (window.speechSynthesis) {
+    if ("speechSynthesis" in window) {
       window.speechSynthesis.cancel();
     }
     if (currentButton) resetButton(currentButton);
@@ -108,7 +112,6 @@ My science? A war you don’t outrun or erase.
       return;
     }
 
-    // Stop any previous voice
     stopCurrent();
 
     if (!("speechSynthesis" in window)) {
@@ -121,9 +124,9 @@ My science? A war you don’t outrun or erase.
     currentKey = key;
     currentButton = button;
 
-    // Style of voice
-    utter.rate = 0.95;   // speed
-    utter.pitch = 0.9;   // deeper tone
+    // Voice style
+    utter.rate = 0.95;
+    utter.pitch = 0.9;
     utter.volume = 1.0;
 
     utter.onstart = () => {
@@ -158,5 +161,5 @@ My science? A war you don’t outrun or erase.
     });
   });
 
-  log("MusicAI voice engine armed. Tap a node to hear the cipher.");
+  log("MusicAI voice engine armed.");
 })();

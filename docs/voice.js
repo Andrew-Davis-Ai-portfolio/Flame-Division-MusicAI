@@ -2,7 +2,6 @@ console.log("🔊 voice.js LOADED");
 
 // -------- CONFIG ---------
 
-// Hologram warning text
 const HOLO_TEXT =
   "Hologram online. This is a restricted Flame Division Music A I unit. " +
   "Unauthorized duplication, extraction, or scraping of this avatar or its audio is prohibited. " +
@@ -10,7 +9,6 @@ const HOLO_TEXT =
   "This unit operates in demo mode only. " +
   "Proceed with discipline.";
 
-// Bar packs
 const BARS = {
   genetic:
     "Gene locks snap loud, that’s genetic recoil. " +
@@ -61,7 +59,7 @@ const BARS = {
     "My flow, neural lace with a lightning spark."
 };
 
-// -------- CORE TTS HELPERS ---------
+// -------- DEBUG HELPERS ---------
 
 function getDebugEl() {
   return document.getElementById("debug");
@@ -70,36 +68,79 @@ function getDebugEl() {
 function log(msg) {
   const dbg = getDebugEl();
   if (dbg) dbg.textContent = msg;
+  console.log("🎙 MusicAI:", msg);
+}
+
+// -------- TTS CORE ---------
+
+let voicesReady = false;
+
+function ensureVoicesReady(cb) {
+  if (!("speechSynthesis" in window)) {
+    log("Speech synthesis not supported on this device / browser.");
+    return;
+  }
+
+  const synth = window.speechSynthesis;
+
+  // If we already loaded once, just go
+  if (voicesReady && synth.getVoices().length > 0) {
+    cb();
+    return;
+  }
+
+  // Kick voice loading
+  let voices = synth.getVoices();
+
+  if (voices.length > 0) {
+    voicesReady = true;
+    cb();
+    return;
+  }
+
+  // Wait for voiceschanged (needed on iOS / Safari)
+  function onVoicesChanged() {
+    voices = synth.getVoices();
+    if (voices.length > 0) {
+      voicesReady = true;
+      synth.removeEventListener("voiceschanged", onVoicesChanged);
+      cb();
+    }
+  }
+
+  synth.addEventListener("voiceschanged", onVoicesChanged);
 }
 
 function speak(text) {
   if (!("speechSynthesis" in window)) {
-    log("Speech synthesis not supported on this device.");
+    log("Speech synthesis not supported on this device / browser.");
     return;
   }
 
-  try {
-    const synth = window.speechSynthesis;
+  ensureVoicesReady(() => {
+    try {
+      const synth = window.speechSynthesis;
 
-    // Stop any current speech
-    if (synth.speaking || synth.pending) {
-      synth.cancel();
+      // Stop any current speech
+      if (synth.speaking || synth.pending) {
+        synth.cancel();
+      }
+
+      const utter = new SpeechSynthesisUtterance(text);
+      utter.rate = 0.95;
+      utter.pitch = 0.98;
+      utter.volume = 1.0;
+
+      utter.onstart = () => log("MusicAI voice engine speaking…");
+      utter.onend = () => log("MusicAI voice engine idle.");
+      utter.onerror = (e) =>
+        log("Speech error: " + (e.error || "unknown error."));
+
+      synth.speak(utter);
+    } catch (err) {
+      log("TTS failure: " + err.message);
     }
-
-    const utter = new SpeechSynthesisUtterance(text);
-    utter.rate = 0.95;
-    utter.pitch = 0.98;
-    utter.volume = 1.0;
-
-    utter.onstart = () => log("MusicAI voice engine speaking…");
-    utter.onend = () => log("MusicAI voice engine idle.");
-    utter.onerror = (e) =>
-      log("Speech error: " + (e.error || "unknown error."));
-
-    synth.speak(utter);
-  } catch (err) {
-    log("TTS failure: " + err.message);
-  }
+  });
 }
 
 // -------- HOLO MODE ---------
@@ -135,7 +176,6 @@ function toggleHolo() {
   const on = toggle.dataset.state !== "on";
   setHoloState(on);
 
-  // Every time you flip Holo, drop the stern warning
   if (on) {
     speak(HOLO_TEXT);
   } else {
@@ -154,14 +194,20 @@ function speakBars(key) {
   speak(text);
 }
 
-// -------- WIRE UP DOM ---------
+// -------- INIT WIRING ---------
 
 (function init() {
+  // Make sure debug element is there
+  if (!getDebugEl()) {
+    console.warn("MusicAI: #debug element not found in DOM.");
+  }
   log("MusicAI voice engine armed.");
 
   const toggle = document.getElementById("holo-toggle");
   if (toggle) {
     toggle.addEventListener("click", toggleHolo);
+  } else {
+    console.warn("MusicAI: holo-toggle button missing.");
   }
 
   const barButtons = document.querySelectorAll(".btn[data-track]");
@@ -171,4 +217,8 @@ function speakBars(key) {
       speakBars(key);
     });
   });
+
+  if (barButtons.length === 0) {
+    console.warn("MusicAI: no .btn[data-track] nodes found.");
+  }
 })();

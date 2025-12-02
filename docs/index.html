@@ -426,101 +426,20 @@
   <script src="voice.js"></script>
 
     <!-- AUDIO ELEMENTS -->
-  <audio id="track-intro"  src="assets/flamelaw_intro.mp3"></audio>
-  <audio id="track-holo"   src="assets/holo_chambers_freestyle.mp3"></audio>
-  <audio id="track-shadow" src="assets/shadow_docket_cipher.mp3"></audio>
+  <!-- Node 01 -->
+<button class="btn" type="button" onclick="speakTrack('genetic')">
+  ▶ Play
+</button>
 
-      <script>
-    (function () {
-      const debug   = document.getElementById("debug");
-      const buttons = Array.from(document.querySelectorAll(".btn[data-track]"));
-      const tracks  = {
-        intro:  document.getElementById("track-intro"),
-        holo:   document.getElementById("track-holo"),
-        shadow: document.getElementById("track-shadow"),
-      };
+<!-- Node 02 -->
+<button class="btn" type="button" onclick="speakTrack('quantum')">
+  ▶ Play
+</button>
 
-      let currentKey    = null;
-      let currentButton = null;
-
-      function log(msg) {
-        if (debug) debug.textContent = msg;
-      }
-
-      function resetButton(btn) {
-        if (!btn) return;
-        btn.dataset.state = "stopped";
-        btn.textContent = "▶ Play";
-      }
-
-      function stopAll() {
-        Object.values(tracks).forEach(audio => {
-          if (!audio) return;
-          audio.pause();
-          audio.currentTime = 0;
-        });
-        buttons.forEach(resetButton);
-        currentKey = null;
-        currentButton = null;
-      }
-
-      function playTrack(key, button) {
-        const audio = tracks[key];
-        if (!audio) {
-          log("No audio element mapped for key: " + key);
-          return;
-        }
-
-        // If same track is already playing, stop it
-        if (currentKey === key && !audio.paused) {
-          stopAll();
-          log("Stopped: " + key);
-          return;
-        }
-
-        // Stop others first
-        stopAll();
-
-        const playPromise = audio.play();
-
-        if (playPromise && typeof playPromise.then === "function") {
-          playPromise.then(() => {
-            button.dataset.state = "playing";
-            button.textContent = "⏸ Pause";
-            currentKey = key;
-            currentButton = button;
-            log("Playing: " + key);
-          }).catch(err => {
-            const code = audio.error ? audio.error.code : "n/a";
-            log("Playback error for " + key + " (code " + code + "): " + err.message);
-            resetButton(button);
-          });
-        } else {
-          // Older browsers with no Promise
-          button.dataset.state = "playing";
-          button.textContent = "⏸ Pause";
-          currentKey = key;
-          currentButton = button;
-          log("Playing: " + key);
-        }
-
-        audio.onended = function () {
-          if (currentKey === key) {
-            resetButton(button);
-            currentKey = null;
-            currentButton = null;
-            log("Finished: " + key);
-          }
-        };
-      }
-
-      buttons.forEach(btn => {
-        btn.addEventListener("click", function () {
-          const key = btn.dataset.track;
-          playTrack(key, btn);
-        });
-      });
-    })();
+<!-- Node 03 -->
+<button class="btn" type="button" onclick="speakTrack('neural')">
+  ▶ Play
+</button>
   </script>
   <!-- HOLO WARNING ENGINE -->
   <script src="voice.js"></script>

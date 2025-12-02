@@ -248,10 +248,6 @@
       color: #ffb3c6;
       min-height: 1em;
     }
-
-    audio {
-      display: none;
-    }
   </style>
 </head>
 <body>
@@ -262,7 +258,7 @@
     </div>
     <h1>Flame-Division-MusicAI</h1>
     <p class="subtitle">
-      Music Industry AI • <strong>ShadowSoundProtocol</strong>.  
+      Music Industry AI • <strong>ShadowSoundProtocol</strong>.<br>
       Certified governance brain with a holographic rap avatar — bar-heavy,
       rights-locked, and coded in Flame Law.
     </p>
@@ -274,7 +270,6 @@
           <img
             src="assets/FlameLaw_Avatar_V1.png"
             alt="Flame Law Avatar V1 — Holographic MC"
-            onerror="document.getElementById('debug').textContent='Avatar failed to load from: assets/FlameLaw_Avatar_V1.png';"
           />
         </div>
 
@@ -293,10 +288,11 @@
           bar-driven, and ready to plug into vector DBs, Unreal, and multi-agent
           stacks when the rest of the system comes online.
         </p>
+
         <div id="debug"></div>
       </section>
 
-      <!-- RIGHT: AUDIO NODES -->
+      <!-- RIGHT: AUDIO / VOICE NODES -->
       <section class="card">
         <h2>ShadowSoundProtocol • Audio Nodes</h2>
         <p class="node-tagline">
@@ -356,7 +352,7 @@
     </footer>
   </div>
 
-    <!-- VOICE ENGINE -->
+  <!-- VOICE ENGINE -->
   <script src="voice.js"></script>
 </body>
 </html>

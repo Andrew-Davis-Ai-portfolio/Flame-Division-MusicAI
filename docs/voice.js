@@ -99,3 +99,26 @@ document.querySelectorAll("button[data-track]").forEach(btn => {
       });
   });
 });
+
+// --- DIRECT USER-GESTURE AUDIO PATCH (Safari-safe) ---
+document.querySelectorAll("button[data-track]").forEach(btn => {
+    btn.addEventListener("click", function (event) {
+        event.stopPropagation(); // ensure gesture belongs ONLY to this button
+
+        const file = this.getAttribute("data-track");
+        const src = `assets/${file}.mp3`;
+
+        const audio = new Audio(src);
+
+        audio.play().then(() => {
+            console.log("Playing:", src);
+            const dbg = document.getElementById("debug");
+            if (dbg) dbg.textContent = `Now playing: ${file}`;
+        }).catch(err => {
+            console.log("BLOCKED:", err);
+            const dbg = document.getElementById("debug");
+            if (dbg) dbg.textContent =
+                `Playback blocked for ${file}. Tap again.`;
+        });
+    });
+});

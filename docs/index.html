@@ -113,6 +113,7 @@
       overflow: hidden;
       border: 1px solid rgba(245,181,68,0.5);
       background: radial-gradient(circle at top, rgba(245,181,68,0.18), #020307);
+      position: relative;
     }
 
     .avatar-frame img,
@@ -120,6 +121,17 @@
       display: block;
       width: 100%;
       height: auto;
+    }
+
+    .avatar-frame video {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transition: opacity 0.4s ease-out;
+    }
+
+    .avatar-frame.holo-active video {
+      opacity: 1;
     }
 
     .avatar-meta {
@@ -147,6 +159,30 @@
       border: 1px solid rgba(245,181,68,0.32);
       color: var(--accent);
       background: rgba(0,0,0,0.45);
+    }
+
+    .holo-toggle {
+      margin-top: 1rem;
+      border: none;
+      cursor: pointer;
+      border-radius: 999px;
+      padding: 0.55rem 1.4rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      background: radial-gradient(circle at 10% 0%, #ffe199 0, #f5b544 45%, #f0722b 90%);
+      color: #1d1208;
+      box-shadow: 0 0 18px rgba(245,181,68,0.65);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .holo-toggle[data-state="on"] {
+      background: radial-gradient(circle at 10% 0%, #b3e5fc 0, #29b6f6 45%, #0069c0 90%);
+      color: #e3f2fd;
+      box-shadow: 0 0 18px rgba(41,182,246,0.7);
     }
 
     h2 {
@@ -249,54 +285,9 @@
       min-height: 1em;
     }
 
-    /* HOLO MODE: FRAME ANIMATION + OVERLAY */
-.avatar-frame {
-  position: relative;   /* REQUIRED for overlay */
-}
-
-/* Hologram pulse effect */
-@keyframes holoPulse {
-  0% {
-    box-shadow: 0 0 0 rgba(245,181,68,0.0),
-                0 0 18px rgba(245,181,68,0.35);
-  }
-  50% {
-    box-shadow: 0 0 40px rgba(245,181,68,0.75),
-                0 0 90px rgba(96,210,255,0.45);
-  }
-  100% {
-    box-shadow: 0 0 0 rgba(245,181,68,0.0),
-                0 0 18px rgba(245,181,68,0.35);
-  }
-}
-
-.avatar-frame.holo-active {
-  animation: holoPulse 1.8s ease-in-out infinite;
-}
-
-/* Holo Mode Status Strip */
-.holo-overlay {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  padding: 0.4rem 0.8rem;
-  background: linear-gradient(to top, rgba(0,0,0,0.88), rgba(0,0,0,0));
-  font-size: 0.75rem;
-  color: #f7f7ff;
-  text-align: center;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  opacity: 0;
-  transform: translateY(6px);
-  transition: opacity 0.22s ease, transform 0.22s ease;
-}
-
-.avatar-frame.holo-active .holo-overlay {
-  opacity: 1;
-  transform: translateY(0);
-}
-    
+    audio {
+      display: none;
+    }
   </style>
 </head>
 <body>
@@ -313,47 +304,40 @@
     </p>
 
     <div class="layout">
-      <!-- LEFT: AVATAR / VIDEO -->
-  <section class="card">
-  <div class="avatar-frame" id="holo-frame">
-    <video
-      src="assets/ai-bargod.mp4"
-      autoplay
-      muted
-      loop
-      playsinline
-      webkit-playsinline
-      poster="assets/FlameLaw_Avatar_V1.png"
-    >
-      <img
-        src="assets/FlameLaw_Avatar_V1.png"
-        alt="Flame Law Avatar V1 — Holographic MC"
-      />
-    </video>
+      <!-- LEFT: AVATAR / HOLO MODE -->
+      <section class="card">
+        <div class="avatar-frame" id="avatar-frame">
+          <!-- Base PNG -->
+          <img
+            id="holo-image"
+            src="assets/FlameLaw_Avatar_V1.png"
+            alt="Flame Law Avatar V1 — Holographic MC"
+          />
+          <!-- Hologram video overlay -->
+          <video
+            id="holo-video"
+            src="assets/ai-bargod.mp4"
+            playsinline
+            muted
+            loop
+          ></video>
+        </div>
 
-    <div class="holo-overlay">
-      ShadowSoundProtocol • Hologram Online
-    </div>
-  </div>
+        <div class="avatar-meta">
+          <strong>Flame Law Avatar V1</strong><br />
+          Generated from CAIO / CAIIP credential stack and Flame Law metadata.
+          Designed as a holographic performance shell for MusicAI output.
+          <div class="pill-row">
+            <span class="pill">Demo-only playback</span>
+            <span class="pill">Rights: Flame Division / Andrew W. Davis</span>
+          </div>
+        </div>
 
-  <div class="avatar-meta">
-    <strong>Flame Law Avatar V1</strong><br />
-    Generated from CAIO / CAIIP credential stack and Flame Law metadata.
-    Designed as a holographic performance shell for MusicAI output.
-    <div class="pill-row">
-      <span class="pill">Demo-only playback</span>
-      <span class="pill">Rights: Flame Division / Andrew W. Davis</span>
-    </div>
+        <button id="holo-toggle" class="holo-toggle" type="button" data-state="off">
+          + Activate Holo Mode
+        </button>
 
-    <div style="margin-top:0.9rem;">
-      <button class="btn" id="holo-toggle" type="button" data-state="off">
-        ✦ Activate Holo Mode
-      </button>
-    </div>
-  </div>
-</section>
-
-        <p class="node-tagline">
+        <p class="node-tagline" style="margin-top: 0.9rem;">
           This landing node is a proof-of-execution: GitHub-native,
           bar-driven, and ready to plug into vector DBs, Unreal, and multi-agent
           stacks when the rest of the system comes online.
@@ -362,7 +346,7 @@
         <div id="debug"></div>
       </section>
 
-      <!-- RIGHT: AUDIO / VOICE NODES -->
+      <!-- RIGHT: AUDIO NODES -->
       <section class="card">
         <h2>ShadowSoundProtocol • Audio Nodes</h2>
         <p class="node-tagline">
@@ -416,33 +400,114 @@
       Flame Division MusicAI runs under internal <strong>Flame Law • ShadowSoundProtocol</strong>.<br>
       Public playback here is demo-only.<br>
       Repo:
-      <a href="https://github.com/Andrew-Davis-Ai-portfolio/Flame-Division-MusicAI" target="_blank">
+      <a href="https://github.com/Andrew-Davis-Ai-portfolio/Flame-Division-MusicAI" target="_blank" rel="noopener">
         Flame-Division-MusicAI
       </a>
     </footer>
   </div>
 
-  <!-- VOICE ENGINE -->
-  <script src="voice.js"></script>
+  <!-- AUDIO ELEMENTS -->
+  <audio id="track-intro"  src="assets/flamelaw_intro.mp3"></audio>
+  <audio id="track-holo"   src="assets/holo_chambers_freestyle.mp3"></audio>
+  <audio id="track-shadow" src="assets/shadow_docket_cipher.mp3"></audio>
 
-    <!-- AUDIO ELEMENTS -->
-  <!-- Node 01 -->
-<button class="btn" type="button" onclick="speakTrack('genetic')">
-  ▶ Play
-</button>
+  <!-- AUDIO NODE SCRIPT -->
+  <script>
+    (function () {
+      const debug = document.getElementById("debug");
+      const buttons = Array.from(document.querySelectorAll(".btn[data-track]"));
+      const tracks = {
+        intro:  document.getElementById("track-intro"),
+        holo:   document.getElementById("track-holo"),
+        shadow: document.getElementById("track-shadow"),
+      };
 
-<!-- Node 02 -->
-<button class="btn" type="button" onclick="speakTrack('quantum')">
-  ▶ Play
-</button>
+      // Log audio loading errors
+      Object.entries(tracks).forEach(([key, audio]) => {
+        if (!audio) return;
+        audio.addEventListener("error", () => {
+          if (debug) {
+            const code = audio.error && audio.error.code;
+            debug.textContent =
+              "Playback error for " + key +
+              (code ? " (code " + code + ")" : "") +
+              ": The operation is not supported for this audio encoding on this device.";
+          }
+        });
+      });
 
-<!-- Node 03 -->
-<button class="btn" type="button" onclick="speakTrack('neural')">
-  ▶ Play
-</button>
+      let currentKey = null;
+      let currentButton = null;
+
+      function log(msg) {
+        if (debug) debug.textContent = msg;
+      }
+
+      function resetButton(btn) {
+        if (!btn) return;
+        btn.dataset.state = "stopped";
+        btn.textContent = "▶ Play";
+      }
+
+      function stopAll() {
+        Object.values(tracks).forEach(audio => {
+          if (!audio) return;
+          audio.pause();
+          audio.currentTime = 0;
+        });
+        buttons.forEach(resetButton);
+        currentKey = null;
+        currentButton = null;
+      }
+
+      async function playTrack(key, button) {
+        const audio = tracks[key];
+        if (!audio) {
+          log("No audio element mapped for key: " + key);
+          return;
+        }
+
+        // toggle off if already playing
+        if (currentKey === key && !audio.paused) {
+          stopAll();
+          log("Stopped: " + key);
+          return;
+        }
+
+        stopAll();
+
+        try {
+          await audio.play();
+          button.dataset.state = "playing";
+          button.textContent = "⏸ Pause";
+          currentKey = key;
+          currentButton = button;
+          log("Playing: " + key);
+
+          audio.onended = function () {
+            if (currentKey === key) {
+              resetButton(button);
+              currentKey = null;
+              currentButton = null;
+              log("Finished: " + key);
+            }
+          };
+        } catch (err) {
+          log("Playback error for " + key + ": " + err.message);
+          resetButton(button);
+        }
+      }
+
+      buttons.forEach(btn => {
+        btn.addEventListener("click", () => {
+          const key = btn.dataset.track;
+          playTrack(key, btn);
+        });
+      });
+    })();
   </script>
-  <!-- HOLO WARNING ENGINE -->
+
+  <!-- HOLO MODE / TTS ENGINE -->
   <script src="voice.js"></script>
 </body>
 </html>
-

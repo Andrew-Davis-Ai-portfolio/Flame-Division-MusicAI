@@ -87,3 +87,15 @@ console.log("🔊 voice.js LOADED");
     }
   });
 })();
+
+document.querySelectorAll("button[data-track]").forEach(btn => {
+  btn.addEventListener("click", function () {
+      const track = this.getAttribute("data-track");
+      const audio = new Audio(`assets/${track}.mp3`);
+      audio.play().catch(err => {
+          console.log("Safari blocked audio:", err);
+          document.getElementById("debug").textContent =
+              `Playback blocked for ${track}. Tap again.`;
+      });
+  });
+});

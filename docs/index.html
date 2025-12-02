@@ -430,29 +430,17 @@
   <audio id="track-holo"   src="assets/holo_chambers_freestyle.mp3"></audio>
   <audio id="track-shadow" src="assets/shadow_docket_cipher.mp3"></audio>
 
-  <script>
+      <script>
     (function () {
-      const debug = document.getElementById("debug");
+      const debug   = document.getElementById("debug");
       const buttons = Array.from(document.querySelectorAll(".btn[data-track]"));
-      const tracks = {
+      const tracks  = {
         intro:  document.getElementById("track-intro"),
         holo:   document.getElementById("track-holo"),
         shadow: document.getElementById("track-shadow"),
       };
 
-      // Log audio loading errors
-      Object.entries(tracks).forEach(([key, audio]) => {
-        if (!audio) return;
-        audio.addEventListener("error", () => {
-          if (debug) {
-            debug.textContent =
-              "Audio failed to load for '" + key +
-              "' at: " + audio.getAttribute("src");
-          }
-        });
-      });
-
-      let currentKey = null;
+      let currentKey    = null;
       let currentButton = null;
 
       function log(msg) {
@@ -476,54 +464,64 @@
         currentButton = null;
       }
 
-      async function playTrack(key, button) {
+      function playTrack(key, button) {
         const audio = tracks[key];
         if (!audio) {
           log("No audio element mapped for key: " + key);
           return;
         }
 
-        // If same track is playing → stop it
+        // If same track is already playing, stop it
         if (currentKey === key && !audio.paused) {
           stopAll();
           log("Stopped: " + key);
           return;
         }
 
-        // Stop other tracks
+        // Stop others first
         stopAll();
 
-        try {
-          await audio.play();
+        const playPromise = audio.play();
+
+        if (playPromise && typeof playPromise.then === "function") {
+          playPromise.then(() => {
+            button.dataset.state = "playing";
+            button.textContent = "⏸ Pause";
+            currentKey = key;
+            currentButton = button;
+            log("Playing: " + key);
+          }).catch(err => {
+            const code = audio.error ? audio.error.code : "n/a";
+            log("Playback error for " + key + " (code " + code + "): " + err.message);
+            resetButton(button);
+          });
+        } else {
+          // Older browsers with no Promise
           button.dataset.state = "playing";
           button.textContent = "⏸ Pause";
           currentKey = key;
           currentButton = button;
           log("Playing: " + key);
-
-          audio.onended = () => {
-            if (currentKey === key) {
-              resetButton(button);
-              currentKey = null;
-              currentButton = null;
-              log("Finished: " + key);
-            }
-          };
-        } catch (err) {
-          log("Playback error for " + key + ": " + err.message);
         }
+
+        audio.onended = function () {
+          if (currentKey === key) {
+            resetButton(button);
+            currentKey = null;
+            currentButton = null;
+            log("Finished: " + key);
+          }
+        };
       }
 
-      // Wire up PLAY buttons
       buttons.forEach(btn => {
-        btn.addEventListener("click", () => {
+        btn.addEventListener("click", function () {
           const key = btn.dataset.track;
           playTrack(key, btn);
         });
       });
     })();
   </script>
-
   <!-- HOLO WARNING ENGINE -->
   <script src="voice.js"></script>
 </body>

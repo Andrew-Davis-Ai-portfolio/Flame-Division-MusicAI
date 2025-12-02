@@ -1,7 +1,6 @@
 console.log("🔊 voice.js LOADED");
 
 // === BARS: 3 NODES ===
-// You can tweak these texts anytime; no MP3 needed.
 const MUSIC_AI_BARS = {
   intro: `
 Quantum drift sparks when the lattice goes stiff,
@@ -102,7 +101,7 @@ My science? A war you don’t outrun or erase.
       return;
     }
 
-    // If same track is already playing, stop it
+    // If same track already playing, stop it
     if (currentKey === key && currentUtterance) {
       stopCurrent();
       log("Stopped: " + key);
@@ -122,15 +121,15 @@ My science? A war you don’t outrun or erase.
     currentKey = key;
     currentButton = button;
 
-    // Voice styling
+    // Style of voice
     utter.rate = 0.95;   // speed
-    utter.pitch = 0.9;   // depth
+    utter.pitch = 0.9;   // deeper tone
     utter.volume = 1.0;
 
     utter.onstart = () => {
       button.dataset.state = "playing";
       button.textContent = "⏸ Pause";
-      log("Spitting: " + key + " (bars length ~" + text.length + ")");
+      log("Spitting: " + key);
     };
 
     utter.onend = () => {
@@ -159,5 +158,5 @@ My science? A war you don’t outrun or erase.
     });
   });
 
-  log("MusicAI voice engine armed. Tap a node to let it read the cipher.");
+  log("MusicAI voice engine armed. Tap a node to hear the cipher.");
 })();

@@ -220,3 +220,16 @@ function speakTrack(key) {
 
   window.speechSynthesis.speak(utter);
 }
+
+function speakTrack(key) {
+  const text = TTS_TRACKS[key];
+  if (!text) return;
+
+  const utter = new SpeechSynthesisUtterance(text);
+  utter.rate = 0.95;   // smooth cadence
+  utter.pitch = 1.05;  // slight Flame elevation
+  utter.volume = 1.0;
+
+  window.speechSynthesis.cancel();
+  window.speechSynthesis.speak(utter);
+}

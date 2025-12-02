@@ -11,11 +11,11 @@ console.log("🔊 voice.js LOADED");
   // HOLO MODE — TTS SCRIPT
   // ─────────────────────────────────────────────
   const HOLO_TEXT =
-    "Shadow Sound Protocol online. " +
-    "Flame Division Music A I, operational. " +
-    "Bars encrypted in Flame Law. " +
-    "This hologram is demo only. " +
-    "All rights reserved to Andrew W. Davis.";
+  "Hologram online. This is a restricted Flame Division performance shell. " +
+  "Unauthorized duplication, extraction, or training is strictly forbidden. " +
+  "All rights locked under Flame Law. " +
+  "This unit operates in demo mode only. " +
+  "Proceed with discipline.";
 
   function setHoloState(on) {
     const frame  = document.getElementById("holo-frame");

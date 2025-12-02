@@ -7,6 +7,15 @@
 <h1 align="center">🔥 Flame Division MusicAI</h1>
 <h3 align="center">Music Industry AI — ShadowSoundProtocol</h3>
 
+<p align="center">
+  <a href="https://andrew-davis-ai-portfolio.github.io/Flame-Division-MusicAI/" target="_blank">
+    <img
+    src="https://img.shields.io/badge/LAUNCH%20MUSICAI%20NODE-ShadowSoundProtocol-f5b544?style=for-the-badge&logo=github&logoColor=000000"
+      alt="Launch Flame Division MusicAI — ShadowSoundProtocol"
+    />
+  </a>
+</p>
+
 ---
 
 <h1 align="center">🔥 Flame Division MusicAI</h1>

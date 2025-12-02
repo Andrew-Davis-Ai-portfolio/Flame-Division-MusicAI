@@ -113,12 +113,10 @@ document.querySelectorAll("button[data-track]").forEach(btn => {
         audio.play().then(() => {
             console.log("Playing:", src);
             const dbg = document.getElementById("debug");
-            if (dbg) dbg.textContent = `Now playing: ${file}`;
-        }).catch(err => {
-            console.log("BLOCKED:", err);
-            const dbg = document.getElementById("debug");
-            if (dbg) dbg.textContent =
-                `Playback blocked for ${file}. Tap again.`;
-        });
-    });
+            if (dbg) dbg.textContent = `Now playing: ${}).catch(err => {
+  console.log("PLAY ERROR:", err);
+  const dbg = document.getElementById("debug");
+  if (dbg) {
+    dbg.textContent = `${file}: ${err.name} — ${err.message}`;
+  }
 });

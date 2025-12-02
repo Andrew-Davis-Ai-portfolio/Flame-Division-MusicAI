@@ -250,12 +250,6 @@
       box-shadow: 0 0 8px rgba(245,181,68,0.55);
     }
 
-    .btn[data-state="playing"] {
-      background: radial-gradient(circle at 10% 0%, #ffb3c6 0, #ff3366 45%, #c2185b 90%);
-      color: #fff2f7;
-      box-shadow: 0 0 16px rgba(255,51,102,0.75);
-    }
-
     .node-tagline {
       font-size: 0.74rem;
       color: var(--text-soft);
@@ -283,10 +277,6 @@
       font-size: 0.7rem;
       color: #ffb3c6;
       min-height: 1em;
-    }
-
-    audio {
-      display: none;
     }
   </style>
 </head>
@@ -346,7 +336,7 @@
         <div id="debug"></div>
       </section>
 
-      <!-- RIGHT: AUDIO NODES -->
+      <!-- RIGHT: AUDIO NODES (TTS) -->
       <section class="card">
         <h2>ShadowSoundProtocol • Audio Nodes</h2>
         <p class="node-tagline">
@@ -356,39 +346,39 @@
         <div class="nodes">
           <article class="node">
             <div>
-              <div class="node-title">FlameLaw Intro • Node-01</div>
-              <div class="node-sub">Opening Protocol · Mission Brief Cipher</div>
+              <div class="node-title">Genetic Recoil • Node-01</div>
+              <div class="node-sub">Bio-warfare Cadence · Helix-level Venom</div>
               <div class="node-bar">
-                “First we etch the law in fire, then we teach the bots to listen…”
+                “Gene-locks snap loud — that’s genetic recoil…”
               </div>
             </div>
-            <button class="btn" data-track="intro" type="button" data-state="stopped">
+            <button class="btn" data-track="genetic" type="button">
               ▶ Play
             </button>
           </article>
 
           <article class="node">
             <div>
-              <div class="node-title">Holo Chambers Freestyle • Node-02</div>
-              <div class="node-sub">Training Sim · Holographic War Room</div>
+              <div class="node-title">Quantum Drift • Node-02</div>
+              <div class="node-sub">Quantum Mechanics · Timeline Bending</div>
               <div class="node-bar">
-                “Every bar a data packet, every cadence is a key…”
+                “Quantum drift sparks when the lattice goes stiff…”
               </div>
             </div>
-            <button class="btn" data-track="holo" type="button" data-state="stopped">
+            <button class="btn" data-track="quantum" type="button">
               ▶ Play
             </button>
           </article>
 
           <article class="node">
             <div>
-              <div class="node-title">Shadow Docket Cipher • Node-03</div>
-              <div class="node-sub">Sealed Motion · After-Hours Tribunal</div>
+              <div class="node-title">Neural Spark • Node-03</div>
+              <div class="node-sub">Neuro-Warfare · Synaptic Brutality</div>
               <div class="node-bar">
-                “I keep a shadow docket where the verdicts never tweet…”
+                “Neural sparks crack when the cortex arcs…”
               </div>
             </div>
-            <button class="btn" data-track="shadow" type="button" data-state="stopped">
+            <button class="btn" data-track="neural" type="button">
               ▶ Play
             </button>
           </article>
@@ -406,108 +396,7 @@
     </footer>
   </div>
 
-  <!-- AUDIO ELEMENTS -->
-  <audio id="track-intro"  src="assets/flamelaw_intro.mp3"></audio>
-  <audio id="track-holo"   src="assets/holo_chambers_freestyle.mp3"></audio>
-  <audio id="track-shadow" src="assets/shadow_docket_cipher.mp3"></audio>
-
-  <!-- AUDIO NODE SCRIPT -->
-  <script>
-    (function () {
-      const debug = document.getElementById("debug");
-      const buttons = Array.from(document.querySelectorAll(".btn[data-track]"));
-      const tracks = {
-        intro:  document.getElementById("track-intro"),
-        holo:   document.getElementById("track-holo"),
-        shadow: document.getElementById("track-shadow"),
-      };
-
-      // Log audio loading errors
-      Object.entries(tracks).forEach(([key, audio]) => {
-        if (!audio) return;
-        audio.addEventListener("error", () => {
-          if (debug) {
-            const code = audio.error && audio.error.code;
-            debug.textContent =
-              "Playback error for " + key +
-              (code ? " (code " + code + ")" : "") +
-              ": The operation is not supported for this audio encoding on this device.";
-          }
-        });
-      });
-
-      let currentKey = null;
-      let currentButton = null;
-
-      function log(msg) {
-        if (debug) debug.textContent = msg;
-      }
-
-      function resetButton(btn) {
-        if (!btn) return;
-        btn.dataset.state = "stopped";
-        btn.textContent = "▶ Play";
-      }
-
-      function stopAll() {
-        Object.values(tracks).forEach(audio => {
-          if (!audio) return;
-          audio.pause();
-          audio.currentTime = 0;
-        });
-        buttons.forEach(resetButton);
-        currentKey = null;
-        currentButton = null;
-      }
-
-      async function playTrack(key, button) {
-        const audio = tracks[key];
-        if (!audio) {
-          log("No audio element mapped for key: " + key);
-          return;
-        }
-
-        // toggle off if already playing
-        if (currentKey === key && !audio.paused) {
-          stopAll();
-          log("Stopped: " + key);
-          return;
-        }
-
-        stopAll();
-
-        try {
-          await audio.play();
-          button.dataset.state = "playing";
-          button.textContent = "⏸ Pause";
-          currentKey = key;
-          currentButton = button;
-          log("Playing: " + key);
-
-          audio.onended = function () {
-            if (currentKey === key) {
-              resetButton(button);
-              currentKey = null;
-              currentButton = null;
-              log("Finished: " + key);
-            }
-          };
-        } catch (err) {
-          log("Playback error for " + key + ": " + err.message);
-          resetButton(button);
-        }
-      }
-
-      buttons.forEach(btn => {
-        btn.addEventListener("click", () => {
-          const key = btn.dataset.track;
-          playTrack(key, btn);
-        });
-      });
-    })();
-  </script>
-
-  <!-- HOLO MODE / TTS ENGINE -->
+  <!-- TTS + HOLO ENGINE -->
   <script src="voice.js"></script>
 </body>
 </html>

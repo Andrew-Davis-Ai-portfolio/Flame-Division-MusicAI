@@ -266,29 +266,44 @@
     <div class="layout">
       <!-- LEFT: AVATAR / VIDEO -->
       <section class="card">
-       <div class="avatar-frame">
-  <video
-    src="assets/ai-bargod.mp4"
-    controls
-    playsinline
-    webkit-playsinline
-    poster="assets/FlameLaw_Avatar_V1.png"
-  >
-    <img
-      src="assets/FlameLaw_Avatar_V1.png"
-      alt="Flame Law Avatar V1 — Holographic MC"
-    />
-  </video>
-</div>
-        <div class="avatar-meta">
-          <strong>Flame Law Avatar V1</strong><br />
-          Generated from CAIO / CAIIP credential stack and Flame Law metadata.
-          Designed as a holographic performance shell for MusicAI output.
-          <div class="pill-row">
-            <span class="pill">Demo-only playback</span>
-            <span class="pill">Rights: Flame Division / Andrew W. Davis</span>
-          </div>
-        </div>
+  <div class="avatar-frame" id="holo-frame">
+    <video
+      src="assets/ai-bargod.mp4"
+      autoplay
+      muted
+      loop
+      playsinline
+      webkit-playsinline
+      poster="assets/FlameLaw_Avatar_V1.png"
+    >
+      <img
+        src="assets/FlameLaw_Avatar_V1.png"
+        alt="Flame Law Avatar V1 — Holographic MC"
+      />
+    </video>
+
+    <!-- HOLO MODE OVERLAY -->
+    <div class="holo-overlay" id="holo-overlay">
+      ShadowSoundProtocol • Hologram Online
+    </div>
+  </div>
+
+  <div class="avatar-meta">
+    <strong>Flame Law Avatar V1</strong><br />
+    Generated from CAIO / CAIIP credential stack and Flame Law metadata.
+    Designed as a holographic performance shell for MusicAI output.
+    <div class="pill-row">
+      <span class="pill">Demo-only playback</span>
+      <span class="pill">Rights: Flame Division / Andrew W. Davis</span>
+    </div>
+
+    <!-- HOLO MODE BUTTON -->
+    <div style="margin-top:0.9rem;">
+      <button class="btn" id="holo-toggle" type="button" data-state="off">
+        ✦ Activate Holo Mode
+      </button>
+    </div>
+  </div>
 
         <p class="node-tagline">
           This landing node is a proof-of-execution: GitHub-native,

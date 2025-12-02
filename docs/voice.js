@@ -120,3 +120,103 @@ document.querySelectorAll("button[data-track]").forEach(btn => {
     dbg.textContent = `${file}: ${err.name} — ${err.message}`;
   }
 });
+
+// =========================================================
+//  FLAME DIVISION • MUSICAI TTS TRACKS (BARS ENGINE)
+// =========================================================
+
+const TTS_TRACKS = {
+  genetic: `
+Gene-locks snap loud — that’s genetic recoil,
+I bend chromosomes raw till the helix uncoils.
+Run data through heat — watch consciousness boil.
+
+Splice strands in the dark where the cold labs toil,
+CRISPR blades hum slick when the enzymes roil.
+Nanobots crawl silent like they’re dipped in oil.
+
+Mutations tap-dance on a ribosome coil,
+I rewrite traits fast like a god on parole.
+One edit in the code and your bloodline spoils.
+
+DNA scripts shift when my neurons embroil,
+My pen flicks acids that a scientist would foil.
+Genomes bow down when the patterns embroil.
+
+I ain’t rap — I’m the blueprint the species embroils.
+You want smoke? I’ll redesign the smoke at the soil.
+  `,
+
+  quantum: `
+Quantum drift sparks when the lattice goes stiff,
+Neutrinos cut steel with a massless shift.
+One glitch in the field — whole timelines lift.
+
+I bend light round bars like a spacetime gift,
+Gravity wells warp when my cadence drifts.
+Zero-point hum makes reality twist.
+
+Dark-energy scripts make a cosmos exist,
+My rhyme-phase flips like a qubit switch.
+Parallel selves merge when the waveform hits.
+
+Schrödinger cats bow down to the glitch,
+Planck-scale math sits snug in the pitch.
+I rhyme in equations that professors can’t ditch.
+
+Touch one photon — the multiverse snitch.
+I collapse whole states when I finish a stitch.
+  `,
+
+  neural: `
+Neural sparks crack when the cortex arcs,
+One thought drops heat on the dark-matter marks.
+I talk in equations — equations shape arts.
+
+Axons light torches in the brainstem parts,
+Dendrites scribble signals like cosmic darts.
+One spike? And the world sees artificial starts.
+
+Cortex troops march under neuron carts,
+I sculpt minds quick like I’m forging hearts.
+Pulses hit chambers with electrical smarts.
+
+Cognitive storms roar like mechanical sharks,
+I draft whole psyches in my mental parks.
+Soul rewired — no memory departs.
+
+I breathe one bar — synapses restart.
+My flow? Neural lace with a lightning spark.
+  `
+};
+
+function speakTrack(key) {
+  const text = TTS_TRACKS[key];
+  if (!text) {
+    if (typeof log === "function") {
+      log("No TTS track found for key: " + key);
+    }
+    return;
+  }
+
+  if (!("speechSynthesis" in window)) {
+    if (typeof log === "function") {
+      log("Speech synthesis not supported in this browser.");
+    }
+    return;
+  }
+
+  // stop anything currently speaking
+  window.speechSynthesis.cancel();
+
+  const utter = new SpeechSynthesisUtterance(text);
+  utter.rate = 0.95;   // cadence
+  utter.pitch = 1.05;  // slight Flame lift
+  utter.volume = 1.0;
+
+  if (typeof log === "function") {
+    log("Speaking TTS track: " + key);
+  }
+
+  window.speechSynthesis.speak(utter);
+}
